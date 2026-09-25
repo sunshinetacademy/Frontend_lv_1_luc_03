@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحاضرة الثالثة — الصور والوسائط | Sunshine T Academy</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Fira+Code:wght@400;500&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+        --primary: #667eea;
+        --primary-dark: #4c5fd5;
+        --secondary: #764ba2;
+        --accent: #f39c12;
+        --success: #27ae60;
+        --danger: #e74c3c;
+        --info: #3498db;
+        --dark: #2c3e50;
+        --light: #f8f9fa;
+        --code-bg: #1e1e2e;
+        --code-header: #181825;
+    }
+
+    body {
+        font-family: 'Cairo', sans-serif;
+        line-height: 1.85;
+        color: var(--dark);
+        background: #eef1f7;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 210mm;
+        margin: 0 auto;
+        background: #fff;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(102, 126, 234, 0.15);
+        border-radius: 12px;
+    }
+
+    /* ═══ Header ═══ */
+    .header {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        padding: 35px 30px;
+        border-radius: 12px;
+        margin: -40px -40px 35px -40px;
+        text-align: center;
+    }
+    .header h1 { font-size: 2.1em; font-weight: 900; margin-bottom: 8px; }
+    .header .subtitle { font-size: 1.15em; opacity: .95; font-weight: 600; }
+    .lecture-info {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        padding: 14px;
+        background: rgba(255,255,255,.15);
+        border-radius: 10px;
+        font-size: .95em;
+    }
+    .lecture-info div { text-align: center; }
+    .lecture-info strong { display: block; font-size: .85em; opacity: .85; margin-bottom: 3px; }
+
+    /* ═══ Sections ═══ */
+    .section { margin: 32px 0; page-break-inside: avoid; }
+    .section-title {
+        font-size: 1.55em;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 16px;
+        padding-right: 14px;
+        border-right: 5px solid var(--secondary);
+        display: block;
+    }
+
+    /* ═══ Quick Review ═══ */
+    .review-box {
+        background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+        padding: 22px;
+        border-radius: 12px;
+        border-right: 5px solid var(--info);
+        margin: 20px 0;
+    }
+    .review-box h3 { color: #006064; margin-bottom: 14px; font-size: 1.25em; }
+    .review-box ul { list-style: none; }
+    .review-box li {
+        padding: 6px 26px 6px 0;
+        position: relative;
+        font-size: .95em;
+    }
+    .review-box li::before {
+        content: "↻";
+        position: absolute;
+        right: 0;
+        color: var(--info);
+        font-weight: 900;
+        font-size: 1.2em;
+    }
+
+    /* ═══ Objectives ═══ */
+    .objectives {
+        background: linear-gradient(135deg, #fff8e1 0%, #ffeaa7 100%);
+        padding: 22px;
+        border-radius: 12px;
+        border-right: 5px solid var(--accent);
+    }
+    .objectives h3 { color: #d35400; margin-bottom: 14px; font-size: 1.25em; }
+    .objectives ul { list-style: none; }
+    .objectives li { padding: 6px 26px 6px 0; position: relative; }
+    .objectives li::before {
+        content: "✓";
+        position: absolute;
+        right: 0;
+        color: var(--success);
+        font-weight: 900;
+        font-size: 1.1em;
+    }
+
+    /* ═══ Content Box ═══ */
+    .content-box {
+        background: var(--light);
+        padding: 22px;
+        border-radius: 10px;
+        margin: 15px 0;
+        border-right: 4px solid var(--primary);
+    }
+    .content-box h4 { color: var(--primary-dark); margin: 15px 0 10px; }
+    .content-box ul { padding-right: 22px; }
+    .content-box li { padding: 4px 0; }
+
+    /* ═══ Key Term ═══ */
+    .key-term {
+        background: #fff3cd;
+        padding: 2px 9px;
+        border-radius: 5px;
+        font-weight: 700;
+        color: #856404;
+        border: 1px solid #ffeaa7;
+    }
+
+    /* ═══ Notes & Tips ═══ */
+    .note {
+        background: #fff5f5;
+        padding: 15px 20px;
+        border-radius: 10px;
+        border-right: 5px solid var(--danger);
+        margin: 16px 0;
+    }
+    .note strong { color: #c0392b; }
+
+    .tip {
+        background: #f0fdf4;
+        padding: 15px 20px;
+        border-radius: 10px;
+        border-right: 5px solid var(--success);
+        margin: 16px 0;
+    }
+    .tip strong { color: #166534; }
+
+    .warning {
+        background: #fffbeb;
+        padding: 15px 20px;
+        border-radius: 10px;
+        border-right: 5px solid var(--accent);
+        margin: 16px 0;
+    }
+    .warning strong { color: #b45309; }
+
+    /* ═══════════════════════════════════════════
+       🎨 CODE EDITOR STYLE
+       ═══════════════════════════════════════════ */
+    .code-editor {
+        background: var(--code-bg);
+        border-radius: 12px;
+        margin: 20px 0;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0,0,0,.18);
+        direction: ltr;
+        text-align: left;
+    }
+
+    .editor-bar {
+        background: var(--code-header);
+        padding: 11px 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 1px solid #313244;
+    }
+    .editor-dots { display: flex; gap: 7px; }
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    .dot.red { background: #ff5f57; }
+    .dot.yellow { background: #febc2e; }
+    .dot.green { background: #28c840; }
+    .editor-filename {
+        margin-left: auto;
+        margin-right: auto;
+        color: #a6adc8;
+        font-family: 'Fira Code', monospace;
+        font-size: .85em;
+        font-weight: 500;
+        letter-spacing: .3px;
+    }
+
+    .code-editor pre {
+        margin: 0;
+        padding: 20px 22px;
+        overflow-x: auto;
+        font-family: 'Fira Code', 'Courier New', monospace;
+        font-size: 14.5px;
+        line-height: 1.75;
+        color: #cdd6f4;
+        white-space: pre;
+        tab-size: 4;
+        direction: ltr;
+        text-align: left;
+        -moz-tab-size: 4;
+    }
+    .code-editor pre::-webkit-scrollbar { height: 8px; }
+    .code-editor pre::-webkit-scrollbar-thumb { background: #45475a; border-radius: 4px; }
+
+    /* ═══ Syntax Highlighting ═══ */
+    .tag       { color: #f38ba8; }
+    .attr      { color: #fab387; }
+    .value     { color: #a6e3a1; }
+    .text      { color: #cdd6f4; }
+    .comment   { color: #6c7086; font-style: italic; }
+    .doctype   { color: #cba6f7; font-weight: 600; }
+    .equals    { color: #94e2d5; }
+    .folder    { color: #89b4fa; font-weight: 600; }
+
+    /* ═══ Output Preview ═══ */
+    .output {
+        background: #fff;
+        border: 2px dashed var(--primary);
+        border-radius: 10px;
+        padding: 18px;
+        margin: 18px 0;
+    }
+    .output::before {
+        content: "🌐 النتيجة في المتصفح";
+        display: block;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 12px;
+        font-size: .95em;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+    }
+
+    /* Image Placeholder — محاكاة شكل الصورة في المتصفح */
+    .img-demo {
+        background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%);
+        border: 2px solid #a5b4fc;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: #4c5fd5;
+        font-weight: 700;
+        font-size: .9em;
+        margin: 8px 0;
+    }
+    .img-demo span { font-size: 1.8em; margin-bottom: 5px; }
+
+    /* ═══ Example Box ═══ */
+    .example {
+        background: #f0fdf4;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 16px 0;
+        border-right: 5px solid var(--success);
+    }
+    .example h4 { color: var(--success); margin-bottom: 10px; }
+
+    /* ═══ Folder Tree ═══ */
+    .folder-tree {
+        background: #f0f9ff;
+        border: 2px solid #bae6fd;
+        border-radius: 10px;
+        padding: 18px 22px;
+        margin: 15px 0;
+        direction: ltr;
+        text-align: left;
+        font-family: 'Fira Code', monospace;
+        font-size: 14px;
+        line-height: 1.9;
+        color: #0c4a6e;
+        white-space: pre;
+        overflow-x: auto;
+    }
+
+    /* ═══ Tables ═══ */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        font-size: .95em;
+    }
+    table th {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        padding: 12px 14px;
+        text-align: right;
+        font-weight: 700;
+    }
+    table td {
+        padding: 11px 14px;
+        border-bottom: 1px solid #e9ecf3;
+    }
+    table tr:nth-child(even) { background: #f8f9fb; }
+    table tr:last-child td { border-bottom: none; }
+    table code {
+        background: #eef1f7;
+        padding: 3px 8px;
+        border-radius: 5px;
+        color: var(--primary-dark);
+        font-family: 'Fira Code', monospace;
+        font-size: .9em;
+        direction: ltr;
+        display: inline-block;
+    }
+
+    /* ═══ Steps ═══ */
+    .steps { counter-reset: step; list-style: none; }
+    .steps li {
+        counter-increment: step;
+        padding: 14px 60px 14px 16px;
+        margin: 10px 0;
+        background: white;
+        border-radius: 10px;
+        border-right: 4px solid var(--primary);
+        position: relative;
+        box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    }
+    .steps li::before {
+        content: counter(step);
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: .95em;
+    }
+
+    /* ═══ Quiz ═══ */
+    .quiz {
+        background: linear-gradient(135deg, #f3e7ff 0%, #e0d1f5 100%);
+        padding: 28px 24px;
+        border-radius: 14px;
+        margin: 35px 0;
+        page-break-before: always;
+    }
+    .quiz > h3 {
+        color: #6b21a8;
+        margin-bottom: 22px;
+        font-size: 1.4em;
+        text-align: center;
+        padding-bottom: 12px;
+        border-bottom: 2px dashed #a78bfa;
+    }
+    .question {
+        background: white;
+        padding: 16px 18px;
+        border-radius: 10px;
+        margin: 13px 0;
+        border-right: 4px solid #8b5cf6;
+        box-shadow: 0 2px 10px rgba(139, 92, 246, .08);
+    }
+    .question h4 { color: #6b21a8; margin-bottom: 10px; font-size: 1em; }
+    .options { list-style: none; }
+    .options li {
+        padding: 8px 14px;
+        margin: 5px 0;
+        background: #f8f9fb;
+        border-radius: 7px;
+        font-size: .93em;
+        direction: ltr;
+        text-align: left;
+        font-family: 'Fira Code', monospace;
+        color: #374151;
+    }
+    .options li.ar {
+        direction: rtl;
+        text-align: right;
+        font-family: 'Cairo', sans-serif;
+    }
+
+    /* ═══ Homework ═══ */
+    .homework {
+        background: linear-gradient(135deg, #fff1f0 0%, #ffe0db 100%);
+        padding: 28px 24px;
+        border-radius: 14px;
+        margin: 35px 0;
+        page-break-before: always;
+    }
+    .homework > h3 {
+        color: #b91c1c;
+        margin-bottom: 22px;
+        font-size: 1.4em;
+        text-align: center;
+        padding-bottom: 12px;
+        border-bottom: 2px dashed #f87171;
+    }
+    .task {
+        background: white;
+        padding: 18px;
+        border-radius: 10px;
+        margin: 14px 0;
+        border-right: 4px solid var(--danger);
+        box-shadow: 0 2px 10px rgba(231, 76, 60, .08);
+    }
+    .task h4 {
+        color: #b91c1c;
+        margin-bottom: 10px;
+        font-size: 1.05em;
+    }
+    .task ul { padding-right: 22px; margin-top: 6px; }
+    .task ul li { padding: 3px 0; font-size: .95em; }
+
+    /* ═══ Summary ═══ */
+    .summary {
+        background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+        padding: 22px;
+        border-radius: 12px;
+        border-right: 5px solid var(--success);
+        margin: 20px 0;
+    }
+    .summary h3 { color: var(--success); margin-bottom: 14px; }
+    .summary ul { list-style: none; }
+    .summary li {
+        padding: 6px 26px 6px 0;
+        position: relative;
+        font-weight: 500;
+    }
+    .summary li::before {
+        content: "✓";
+        position: absolute;
+        right: 0;
+        color: var(--success);
+        font-weight: 900;
+    }
+
+    /* ═══ Footer ═══ */
+    .footer {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 22px;
+        border-top: 2px solid var(--primary);
+        color: #7f8c8d;
+        font-size: .95em;
+    }
+    .footer strong { color: var(--primary-dark); font-size: 1.05em; }
+    .next-lecture {
+        margin-top: 14px;
+        padding: 12px;
+        background: linear-gradient(135deg, #eef1f7 0%, #e0e7ff 100%);
+        border-radius: 8px;
+        color: var(--primary-dark);
+        font-weight: 600;
+    }
+
+    /* ═══ Print ═══ */
+    @media print {
+        body { background: white; padding: 0; }
+        .container { box-shadow: none; padding: 20px; }
+        .section { page-break-inside: avoid; }
+        .quiz, .homework { page-break-before: always; }
+        .code-editor { box-shadow: none; }
+        .header { margin: -20px -20px 25px -20px; }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header class="header">
+        <h1>🌟 Sunshine T Academy</h1>
+        <div class="subtitle">Frontend Development Course</div>
+        <div class="lecture-info">
+            <div><strong>المحاضرة</strong><span>الثالثة</span></div>
+            <div><strong>الموضوع</strong><span>الصور والوسائط</span></div>
+            <div><strong>المستوى</strong><span>مبتدئ</span></div>
+        </div>
+    </header>
+
+    <!-- ═══════ REVIEW ═══════ -->
+    <section class="section">
+        <div class="review-box">
+            <h3>↻ مراجعة سريعة — المحاضرة الثانية</h3>
+            <ul>
+                <li>تنسيقات النصوص: mark, del, ins, small, sub, sup</li>
+                <li>القوائم: &lt;ul&gt; غير مرتبة — &lt;ol&gt; مرتبة — &lt;li&gt; عنصر القائمة</li>
+                <li>القوائم المتداخلة (Nested Lists)</li>
+                <li>الروابط: &lt;a href="..."&gt; و target="_blank" و mailto:</li>
+                <li>التعليقات: &lt;!-- --&gt;</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ═══════ OBJECTIVES ═══════ -->
+    <section class="section">
+        <div class="objectives">
+            <h3>🎯 أهداف المحاضرة</h3>
+            <ul>
+                <li>إضافة صور لصفحة HTML باستخدام &lt;img&gt;</li>
+                <li>فهم خصائص src و alt وأهميتهما</li>
+                <li>التحكم في حجم الصور</li>
+                <li>معرفة صيغ الصور المختلفة ومتى نستخدم كل واحدة</li>
+                <li>فهم المسارات (Paths) — الصور المحلية والخارجية</li>
+                <li>تحويل الصورة إلى رابط قابل للنقر</li>
+                <li>أساسيات الصوت والفيديو في HTML</li>
+                <li>بناء مشروع: صفحة معرض صور (Photo Gallery)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ═══════ IMG TAG ═══════ -->
+    <section class="section">
+        <h2 class="section-title">إضافة الصور — وسم &lt;img&gt;</h2>
+
+        <div class="content-box">
+            <p>لإضافة صورة في HTML نستخدم وسم <code>&lt;img&gt;</code> وهو <span class="key-term">Void Element</span> أي وسم بدون إغلاق.</p>
+
+            <h4>🔹 أهم خصائص &lt;img&gt;:</h4>
+            <ul>
+                <li><code>src</code> — <strong>مصدر الصورة</strong> (أهم خاصية!)</li>
+                <li><code>alt</code> — <strong>النص البديل</strong> (يظهر لو الصورة لم تُحمَّل)</li>
+                <li><code>width</code> — عرض الصورة</li>
+                <li><code>height</code> — ارتفاع الصورة</li>
+            </ul>
+        </div>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">first-image.html</div>
+            </div>
+<pre><span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"cat.jpg"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"قطة صغيرة لونها رمادي"</span><span class="tag">&gt;</span></pre>
+        </div>
+
+        <div class="output">
+            <div class="img-demo" style="height: 130px; max-width: 260px;">
+                <span>🐱</span>
+                cat.jpg
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>⚠️ انتبه:</strong> وسم <code>&lt;img&gt;</code> ليس له وسم إغلاق <code>&lt;/img&gt;</code> — هذا خطأ شائع عند المبتدئين!
+        </div>
+    </section>
+
+    <!-- ═══════ ALT ATTRIBUTE ═══════ -->
+    <section class="section">
+        <h2 class="section-title">خاصية alt — النص البديل</h2>
+
+        <p>خاصية <code>alt</code> توصف ما في الصورة. ليه مهمة جداً؟</p>
+
+        <table>
+            <thead>
+                <tr><th>الحالة</th><th>فائدة alt</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>الصورة لم تُحمَّل (مسار غلط)</td>
+                    <td>يظهر النص مكان الصورة</td>
+                </tr>
+                <tr>
+                    <td>مستخدم قارئ شاشة (Accessibility)</td>
+                    <td>يقرأ الوصف بصوت عالٍ</td>
+                </tr>
+                <tr>
+                    <td>محركات البحث (SEO)</td>
+                    <td>تفهم محتوى الصورة</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="example">
+            <h4>💡 مثال: ماذا يحدث لو الصورة لم توجد؟</h4>
+
+            <div class="code-editor">
+                <div class="editor-bar">
+                    <div class="editor-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="editor-filename">broken-image.html</div>
+                </div>
+<pre><span class="comment">&lt;!-- المسار غلط: الصورة غير موجودة --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"photo123.jpg"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"غروب الشمس على البحر"</span><span class="tag">&gt;</span></pre>
+            </div>
+
+            <div class="output">
+                <div style="border: 2px dashed #e74c3c; border-radius: 8px; padding: 14px; color: #c0392b; font-size: .9em;">
+                    🖼️ غروب الشمس على البحر <small style="color: #999;">← النص البديل ظهر لأن الصورة غير موجودة</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="tip">
+            <strong>💡 قاعدة ذهبية:</strong> أي صورة في أي صفحة — لازم يكون لها <code>alt</code> واضح ومُوصِّف. اعتبرها جزء من الكود المهني!
+        </div>
+    </section>
+
+    <!-- ═══════ IMAGE SIZE ═══════ -->
+    <section class="section">
+        <h2 class="section-title">التحكم في حجم الصورة</h2>
+
+        <p>يمكننا التحكم في الحجم باستخدام <code>width</code> و <code>height</code>:</p>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">image-size.html</div>
+            </div>
+<pre><span class="tag">&lt;h3&gt;</span><span class="text">صورة بحجمها الأصلي</span><span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"cat.jpg"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"قطة"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;h3&gt;</span><span class="text">صورة بحجم مخصص</span><span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"cat.jpg"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"قطة"</span> <span class="attr">width</span><span class="equals">=</span><span class="value">"200"</span> <span class="attr">height</span><span class="equals">=</span><span class="value">"150"</span><span class="tag">&gt;</span></pre>
+        </div>
+
+        <div class="output">
+            <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                <div>
+                    <small style="color:#999;">الحجم الأصلي (مثلاً 500×375)</small>
+                    <div class="img-demo" style="height: 150px; width: 200px;">
+                        <span>🐱</span> 500 × 375
+                    </div>
+                </div>
+                <div>
+                    <small style="color:#999;">width=200 height=150</small>
+                    <div class="img-demo" style="height: 100px; width: 133px;">
+                        <span>🐱</span> 200 × 150
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tip">
+            <strong>💡 نصيحة مهمة:</strong> لو حددت <code>width</code> فقط بدون <code>height</code> — المتصفح سيظبط الارتفاع تلقائياً بنفس النسبة، فالصورة <strong>لن تتشوه</strong>.
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ حذار من التشوه:</strong> لو حددت عرض وارتفاع بنِسب مختلفة عن أبعاد الصورة الأصلية — الصورة هتتشد وتتشوه!
+        </div>
+    </section>
+
+    <!-- ═══════ IMAGE FORMATS ═══════ -->
+    <section class="section">
+        <h2 class="section-title">صيغ الصور — متى نستخدم كل واحدة؟</h2>
+
+        <table>
+            <thead>
+                <tr><th>الصيغة</th><th>الاستخدام الأفضل</th><th>الشفافية</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>.jpg</code></td>
+                    <td>الصور الفوتوغرافية (أشخاص، طبيعة)</td>
+                    <td>❌ لا</td>
+                </tr>
+                <tr>
+                    <td><code>.png</code></td>
+                    <td>صور تحتاج خلفية شفافة، لقطات الشاشة</td>
+                    <td>✅ نعم</td>
+                </tr>
+                <tr>
+                    <td><code>.gif</code></td>
+                    <td>صور متحركة بسيطة</td>
+                    <td>✅ نعم</td>
+                </tr>
+                <tr>
+                    <td><code>.svg</code></td>
+                    <td>الأيقونات والشعارات (Logos) — لا تفقد جودتها عند التكبير</td>
+                    <td>✅ نعم</td>
+                </tr>
+                <tr>
+                    <td><code>.webp</code></td>
+                    <td>صيغة حديثة — جودة عالية بحجم أصغر</td>
+                    <td>✅ نعم</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="tip">
+            <strong>💡 خلاصة سريعة:</strong>
+            صور فوتوغرافية → <code>JPG</code> | شفافية → <code>PNG</code> | شعارات وأيقونات → <code>SVG</code>
+        </div>
+    </section>
+
+    <!-- ═══════ LOCAL PATHS ═══════ -->
+    <section class="section">
+        <h2 class="section-title">الصور المحلية وفهم المسارات (Paths)</h2>
+
+        <p>أول خطوة: ننظم ملفات المشروع في مجلدات. تخيل معي هيكل المشروع ده:</p>
+
+        <div class="folder-tree">📁 my-project/
+├── 📄 index.html
+├── 🖼️ beach.jpg
+├── 📁 images/
+│   ├── 🖼️ cat.jpg
+│   └── 🖼️ sunset.jpg
+└── 📁 gallery/
+    └── 🖼️ logo.png</div>
+
+        <h3 style="color: var(--primary-dark); margin: 25px 0 15px;">📍 الحالة 1: الصورة في نفس مجلد الملف</h3>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">index.html</div>
+            </div>
+<pre><span class="comment">&lt;!-- beach.jpg موجودة بجانب index.html --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"beach.jpg"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"شاطئ جميل"</span><span class="tag">&gt;</span></pre>
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 25px 0 15px;">📍 الحالة 2: الصورة داخل مجلد فرعي</h3>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">index.html</div>
+            </div>
+<pre><span class="comment">&lt;!-- cat.jpg موجودة داخل مجلد images --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"images/cat.jpg"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"قطة رمادية"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- logo.png موجودة داخل مجلد gallery --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"gallery/logo.png"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"شعار الموقع"</span><span class="tag">&gt;</span></pre>
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 25px 0 15px;">📍 الحالة 3: النزول مجلد للأعلى (../)</h3>
+
+        <div class="content-box">
+            <p>نستخدم <span class="key-term">../</span> للخروج من المجلد الحالي خطوة للأعلى.</p>
+            <p>مثال: لو الملف في مجلد <code>gallery</code> والصورة في <code>images</code>:</p>
+        </div>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">gallery/page.html</div>
+            </div>
+<pre><span class="comment">&lt;-- أنا داخل مجلد gallery، والصورة في مجلد images في الأعلى --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"../images/cat.jpg"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"قطة"</span><span class="tag">&gt;</span>
+<span class="comment">&lt;-- ../ معناها: اخرج من gallery أولاً، ثم ادخل images --&gt;</span></pre>
+        </div>
+
+        <div class="note">
+            <strong>⚠️ أشهر خطأ عند المبتدئين:</strong> لو الصورة مش ظاهرة — 90% من الأسباب إن المسار غلط أو اسم الملف مختلف (حروف كبيرة/صغيرة مهمة!). <code>Cat.jpg</code> غير <code>cat.jpg</code>!
+        </div>
+    </section>
+
+    <!-- ═══════ EXTERNAL IMAGES ═══════ -->
+    <section class="section">
+        <h2 class="section-title">الصور الخارجية (من الإنترنت)</h2>
+
+        <p>يمكن استخدام صورة موجودة على الإنترنت عن طريق وضع الرابط الكامل في <code>src</code>:</p>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">external-image.html</div>
+            </div>
+<pre><span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"https://example.com/images/mountain.jpg"</span>
+     <span class="attr">alt</span><span class="equals">=</span><span class="value">"جبل مغطى بالثلج"</span><span class="tag">&gt;</span></pre>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ احذر من الاعتماد على الصور الخارجية:</strong>
+            <ul style="padding-right: 20px; margin-top: 8px;">
+                <li>لو صاحب الموقع حذف الصورة → مشروك هتبوظ!</li>
+                <li>الموقع الخارجي ممكن يكون بطيء → صفحتك هتبقى بطيئة</li>
+                <li>الأفضل دايماً: <strong>نزّل الصورة وحطها في مشروعك</strong></li>
+            </ul>
+        </div>
+
+        <div class="tip">
+            <strong>💡 مصادر صور مجانية:</strong> مواقع زي <strong>Unsplash</strong> و <strong>Pexels</strong> و <strong>Pixabay</strong> بتوفر صور مجانية للاستخدام — استخدمها في مشاريعك.
+        </div>
+    </section>
+
+    <!-- ═══════ IMAGE AS LINK ═══════ -->
+    <section class="section">
+        <h2 class="section-title">تحويل الصورة إلى رابط</h2>
+
+        <p>فكرة بسيطة وجميلة: نضع وسم <code>&lt;img&gt;</code> <strong>داخل</strong> وسم <code>&lt;a&gt;</code>:</p>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">image-link.html</div>
+            </div>
+<pre><span class="comment">&lt;-- الصورة كلها أصبحت رابطاً --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span><span class="equals">=</span><span class="value">"https://github.com"</span> <span class="attr">target</span><span class="equals">=</span><span class="value">"_blank"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"images/github-logo.png"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"شعار GitHub"</span> <span class="attr">width</span><span class="equals">=</span><span class="value">"100"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/a&gt;</span></pre>
+        </div>
+
+        <div class="output">
+            <div class="img-demo" style="height: 80px; width: 110px; cursor: pointer;">
+                <span>🐙</span> github-logo.png
+            </div>
+            <small style="color: #999;">← لما تدوس على الصورة، هتفتح موقع GitHub في تاب جديد</small>
+        </div>
+    </section>
+
+    <!-- ═══════ FIGURE ═══════ -->
+    <section class="section">
+        <h2 class="section-title">الصور مع التعليق — figure و figcaption</h2>
+
+        <p>لما نيجي نحط صورة مع شرح تحتها (زي الموسوعات) — نستخدم <code>&lt;figure&gt;</code> و <code>&lt;figcaption&gt;</code>:</p>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">figure.html</div>
+            </div>
+<pre><span class="tag">&lt;figure&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"images/pyramids.jpg"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"أهرامات الجيزة"</span> <span class="attr">width</span><span class="equals">=</span><span class="value">"300"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;figcaption&gt;</span><span class="text">أهرامات الجيزة — آخر عجائب الدنيا السبع الباقية</span><span class="tag">&lt;/figcaption&gt;</span>
+<span class="tag">&lt;/figure&gt;</span></pre>
+        </div>
+
+        <div class="output">
+            <div class="img-demo" style="height: 130px; width: 220px;">
+                <span>🔺</span> pyramids.jpg
+            </div>
+            <p style="text-align: center; font-size: .88em; color: #555; margin-top: 6px;">أهرامات الجيزة — آخر عجائب الدنيا السبع الباقية</p>
+        </div>
+
+        <div class="tip">
+            <strong>💡 ليه ده أفضل؟</strong> لأن <code>&lt;figcaption&gt;</code> بتربط الوصف بالصورة بشكل معنوي — المتصفحات ومحركات البحث تفهم إن الوصف خاص بالصورة دي.
+        </div>
+    </section>
+
+    <!-- ═══════ AUDIO & VIDEO ═══════ -->
+    <section class="section">
+        <h2 class="section-title">أساسيات الصوت والفيديو</h2>
+
+        <h3 style="color: var(--primary-dark); margin: 15px 0 10px;">🎧 الصوت — وسم &lt;audio&gt;</h3>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">audio.html</div>
+            </div>
+<pre><span class="tag">&lt;audio</span> <span class="attr">controls</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;source</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"music.mp3"</span> <span class="attr">type</span><span class="equals">=</span><span class="value">"audio/mpeg"</span><span class="tag">&gt;</span>
+    <span class="text">متصفحك لا يدعم تشغيل الصوت.</span>
+<span class="tag">&lt;/audio&gt;</span></pre>
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 25px 0 10px;">🎬 الفيديو — وسم &lt;video&gt;</h3>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">video.html</div>
+            </div>
+<pre><span class="tag">&lt;video</span> <span class="attr">controls</span> <span class="attr">width</span><span class="equals">=</span><span class="value">"400"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;source</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"intro.mp4"</span> <span class="attr">type</span><span class="equals">=</span><span class="value">"video/mp4"</span><span class="tag">&gt;</span>
+    <span class="text">متصفحك لا يدعم تشغيل الفيديو.</span>
+<span class="tag">&lt;/video&gt;</span></pre>
+        </div>
+
+        <div class="content-box">
+            <h4>📖 خصائص مهمة:</h4>
+            <ul>
+                <li><code>controls</code> — يعرض أزرار التشغيل والإيقاف</li>
+                <li><code>width</code> — عرض مشغل الفيديو</li>
+                <li>النص بين الوسمين — يظهر لو المتصفح قديم</li>
+            </ul>
+        </div>
+
+        <div class="note">
+            <strong>⚠️ في المرحلة دي:</strong> محتاجين الأساسيات فقط — الصوت والفيديو المتقدم (autoplay, muted...) هنشوفه لما نحتاجه في مشاريع فعلية.
+        </div>
+    </section>
+
+    <!-- ═══════ PROJECT ═══════ -->
+    <section class="section">
+        <h2 class="section-title">المشروع العملي: صفحة معرض الصور 🖼️</h2>
+
+        <p>الآن نبني مشروع المحاضرة — صفحة معرض صور شخصية بتستخدم كل اللي اتعلمناه! 🎉</p>
+
+        <p><strong>📝 قبل ما نبدأ — هيكل المشروع:</strong></p>
+
+        <div class="folder-tree">📁 gallery-project/
+├── 📄 index.html
+└── 📁 images/
+    ├── 🖼️ beach.jpg
+    ├── 🖼️ cat.jpg
+    ├── 🖼️ mountain.jpg
+    └── 🖼️ city.jpg</div>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">index.html</div>
+            </div>
+<pre><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span><span class="equals">=</span><span class="value">"ar"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span><span class="equals">=</span><span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="text">معرض صوري</span><span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="comment">&lt;!-- العنوان الرئيسي --&gt;</span>
+    <span class="tag">&lt;h1&gt;</span><span class="text">📸 معرض صوري الشخصي</span><span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="text">مجموعة من صوري المفضلة من رحلاتي</span><span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;hr&gt;</span>
+
+    <span class="comment">&lt;!-- الصورة المميزة مع تعليق --&gt;</span>
+    <span class="tag">&lt;h2&gt;</span><span class="text">✨ صورة الأسبوع</span><span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;figure&gt;</span>
+        <span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"images/mountain.jpg"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"قمم جبلية مغطاة بالثلج"</span> <span class="attr">width</span><span class="equals">=</span><span class="value">"400"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;figcaption&gt;</span><span class="text">رحلتي لجبال سيناء — 2024</span><span class="tag">&lt;/figcaption&gt;</span>
+    <span class="tag">&lt;/figure&gt;</span>
+
+    <span class="tag">&lt;hr&gt;</span>
+
+    <span class="comment">&lt;!-- بقية الصور --&gt;</span>
+    <span class="tag">&lt;h2&gt;</span><span class="text">🖼️ كل الصور</span><span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;ul&gt;</span>
+        <span class="tag">&lt;li&gt;</span>
+            <span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"images/beach.jpg"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"شاطئ بالغروب"</span> <span class="attr">width</span><span class="equals">=</span><span class="value">"200"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;p&gt;</span><span class="text">شاطئ الغردقة</span><span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;li&gt;</span>
+            <span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"images/cat.jpg"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"قطة رمادية صغيرة"</span> <span class="attr">width</span><span class="equals">=</span><span class="value">"200"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;p&gt;</span><span class="text">قطتي المفضلة</span><span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;li&gt;</span>
+            <span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"images/city.jpg"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"مدينة ليلاً بالأنوار"</span> <span class="attr">width</span><span class="equals">=</span><span class="value">"200"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;p&gt;</span><span class="text">القاهرة ليلاً</span><span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;/ul&gt;</span>
+
+    <span class="tag">&lt;hr&gt;</span>
+
+    <span class="comment">&lt;-- لوجو موقع خارجي كرابط --&gt;</span>
+    <span class="tag">&lt;h2&gt;</span><span class="text">🔗 مصدر الصور</span><span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;p&gt;</span>
+        <span class="text">يمكنك تحميل صور مجانية من </span>
+        <span class="tag">&lt;a</span> <span class="attr">href</span><span class="equals">=</span><span class="value">"https://unsplash.com"</span> <span class="attr">target</span><span class="equals">=</span><span class="value">"_blank"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"images/logo.png"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"موقع Unsplash"</span> <span class="attr">width</span><span class="equals">=</span><span class="value">"30"</span><span class="tag">&gt;</span>
+            <span class="text"> Unsplash</span>
+        <span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+        </div>
+
+        <div class="tip">
+            <strong>🎯 التحدي:</strong> لو مش عندك صور — اعمل مجلد <code>images</code> وحط فيه أي صور من موبايلك، وسمّيها بنفس الأسماء في الكود!
+        </div>
+    </section>
+
+    <!-- ═══════ SUMMARY ═══════ -->
+    <section class="section">
+        <h2 class="section-title">ملخص المحاضرة</h2>
+        <div class="summary">
+            <h3>✅ ما تعلمناه اليوم</h3>
+            <ul>
+                <li>وسم &lt;img&gt; — Void Element بدون إغلاق</li>
+                <li>src لتحديد مصدر الصورة — alt للنص البديل (مهم جداً!)</li>
+                <li>width و height للتحكم في الحجم</li>
+                <li>صيغ الصور: JPG للصور — PNG للشفافية — SVG للشعارات</li>
+                <li>المسارات: نفس المجلد، مجلد فرعي (images/)، الخروج للأعلى (../)</li>
+                <li>الصور الخارجية — مع مخاطرها والحل الأفضل</li>
+                <li>صورة كرابط: img داخل a</li>
+                <li>figure و figcaption للصور المعلَّقة</li>
+                <li>أساسيات audio و video مع controls</li>
+                <li>بنينا مشروع معرض صور كامل!</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ═══════ QUIZ ═══════ -->
+    <div class="quiz">
+        <h3>🧠 اختبر نفسك — 10 أسئلة</h3>
+
+        <div class="question">
+            <h4>السؤال 1: ما هو الوسم المستخدم لإضافة صورة؟</h4>
+            <ul class="options">
+                <li>A) &lt;image&gt;</li>
+                <li>B) &lt;img&gt;</li>
+                <li>C) &lt;picture&gt;</li>
+                <li>D) &lt;photo&gt;</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 2: ما الخاصية التي تحدد مصدر الصورة؟</h4>
+            <ul class="options">
+                <li>A) link</li>
+                <li>B) source</li>
+                <li>C) src</li>
+                <li>D) href</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 3: ماذا تعني خاصية alt؟</h4>
+            <ul class="options ar">
+                <li>A) ارتفاع الصورة</li>
+                <li>B) النص البديل الذي يظهر لو الصورة لم تُحمَّل</li>
+                <li>C) لون إطار الصورة</li>
+                <li>D) اسم الصورة</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 4: هل يحتوي وسم &lt;img&gt; إلى وسم إغلاق؟</h4>
+            <ul class="options ar">
+                <li>A) نعم، &lt;/img&gt;</li>
+                <li>B) لا، إنه Void Element</li>
+                <li>C) فقط في HTML5</li>
+                <li>D) يعمل الحالتان</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 5: الصورة موجودة داخل مجلد images، ما المسار الصحيح؟</h4>
+            <ul class="options">
+                <li>A) src="cat.jpg"</li>
+                <li>B) src="/cat.jpg"</li>
+                <li>C) src="images/cat.jpg"</li>
+                <li>D) src="cat.jpg/images"</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 6: ماذا تعني ../ في المسار؟</h4>
+            <ul class="options ar">
+                <li>A) الدخول لمجلد فرعي</li>
+                <li>B) الخروج خطوة من المجلد الحالي للأعلى</li>
+                <li>C) حذف الملف</li>
+                <li>D) الرجوع للصفحة الرئيسية</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 7: أي صيغة هي الأفضل للشعارات والأيقونات؟</h4>
+            <ul class="options">
+                <li>A) JPG</li>
+                <li>B) GIF</li>
+                <li>C) SVG</li>
+                <li>D) BMP</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 8: كيف تجعل الصورة رابطاً قابلاً للنقر؟</h4>
+            <ul class="options ar">
+                <li>A) نضع &lt;a&gt; داخل &lt;img&gt;</li>
+                <li>B) نضع &lt;img&gt; داخل &lt;a&gt;</li>
+                <li>C) نضيف link="true" للصورة</li>
+                <li>D) لا يمكن ذلك</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 9: ما الخاصية التي تعرض أزرار التشغيل للفيديو؟</h4>
+            <ul class="options">
+                <li>A) play</li>
+                <li>B) buttons</li>
+                <li>C) controls</li>
+                <li>D) player</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 10: الصورة لا تظهر في المتصفح — ما أول شيء تفحصه؟</h4>
+            <ul class="options ar">
+                <li>A) لون الخلفية</li>
+                <li>B) المسار واسم الملف (الحروف كبيرة/صغيرة)</li>
+                <li>C) عنوان الصفحة</li>
+                <li>D) حجم الصفحة</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ═══════ HOMEWORK ═══════ -->
+    <div class="homework">
+        <h3>📝 الواجب — 5 مسائل</h3>
+
+        <div class="task">
+            <h4>المسألة 1: صفحة ملف شخصي بصورة</h4>
+            <p><strong>المطلوب:</strong> أنشئ مجلداً باسم <code>profile</code> بداخله:</p>
+            <ul>
+                <li>ملف index.html</li>
+                <li>مجلد images بداخله صورتك الشخصية (أو أي صورة)</li>
+                <li>صفحة فيها: اسمك h1 + صورتك + فقرة قصيرة عنك</li>
+                <li>الصورة عرضها 300 بكسل</li>
+                <li>لا تنسَ خاصية alt!</li>
+            </ul>
+        </div>
+
+        <div class="task">
+            <h4>المسألة 2: هواياتي بالصور</h4>
+            <p><strong>المطلوب:</strong> أنشئ صفحة تعرض 3 من هواياتك:</p>
+            <ul>
+                <li>كل هواية: عنوان h3 + صورة + وصف في سطر واحد</li>
+                <li>استخدم &lt;figure&gt; و &lt;figcaption&gt; لهوايتك المفضلة</li>
+                <li>كل الصور بعرض 250 بكسل</li>
+            </ul>
+        </div>
+
+        <div class="task">
+            <h4>المسألة 3: الروابط المصورة</h4>
+            <p><strong>المطلوب:</strong> أنشئ صفحة "مواقعي المفضلة":</p>
+            <ul>
+                <li>3 مواقع (جوجل، يوتيوب، جيت هاب)</li>
+                <li>كل موقع: صورة أو أيقونة تعمل كرابط للموقع</li>
+                <li>جميع الروابط تفتح في تاب جديد</li>
+                <li>كل صورة لها alt مناسب</li>
+            </ul>
+        </div>
+
+        <div class="task">
+            <h4>المسألة 4: تصحيح الأخطاء 🐞</h4>
+            <p><strong>المطلوب:</strong> اكتشف الأخطاء في الكود التالي وصححها (فيه 4 أخطاء!):</p>
+            <div class="code-editor">
+                <div class="editor-bar">
+                    <div class="editor-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="editor-filename">buggy.html</div>
+                </div>
+<pre><span class="tag">&lt;h1&gt;</span><span class="text">صوري</span><span class="tag">&lt;/h1&gt;</span>
+
+<span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"images/beach.jpg"</span> <span class="attr">width</span><span class="equals">=</span><span class="value">"300"</span> <span class="attr">height</span><span class="equals">=</span><span class="value">"50"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"Images/Cat.jpg"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"قطة"</span><span class="tag">&gt;</span><span class="tag">&lt;/img&gt;</span>
+
+<span class="tag">&lt;a</span> <span class="attr">target</span><span class="equals">=</span><span class="value">"_blank"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attr">src</span><span class="equals">=</span><span class="value">"logo.png"</span> <span class="attr">alt</span><span class="equals">=</span><span class="value">"شعار"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/a&gt;</span></pre>
+            </div>
+        </div>
+
+        <div class="task">
+            <h4>المسألة 5: مشروع حر — صفحة وسائط متكاملة</h4>
+            <p><strong>المطلوب:</strong> أنشئ صفحة عن أي موضوع تحبه (سياحة، رياضة، أنيمي...) تحتوي على:</p>
+            <ul>
+                <li>4 صور على الأقل بأحجام مختلفة</li>
+                <li>صورة واحدة داخل &lt;figure&gt; مع &lt;figcaption&gt;</li>
+                <li>صورة واحدة تعمل كرابط</li>
+                <li>قائمة مرتبة بأماكن أو أشياء تفضلها</li>
+                <li>تعليقات تنظم الكود</li>
+                <li>⚠️ إجباري: كل صورة لها alt وصحيح وتظهر فعلاً في المتصفح!</li>
+            </ul>
+        </div>
+
+        <div class="note">
+            <strong>💡 نصيحة للواجب:</strong> قبل ما تسلّم — افتح الصفحة في المتصفح، وتأكد إن <strong>كل صورة ظاهرة</strong>. صورة مش ظاهرة = صفر في التقييم!
+        </div>
+    </div>
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer class="footer">
+        <p><strong>Sunshine T Academy</strong></p>
+        <p>"بنحوّل الحلم لكود"</p>
+        <p>Frontend Development Course — المحاضرة الثالثة</p>
+        <div class="next-lecture">
+            📅 المحاضرة القادمة: <strong>الجداول والنماذج (Tables & Forms)</strong>
+        </div>
+    </footer>
+
+</div>
+</body>
+</html>
