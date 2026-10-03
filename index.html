@@ -1,0 +1,2299 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المحاضرة الثالثة | Semantic HTML | Sunshine T Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4A7C59;
+            --primary-dark: #2D5F3F;
+            --primary-light: #7BA889;
+            --primary-soft: #D4E5D8;
+
+            --secondary: #D4A574;
+            --secondary-dark: #B8895A;
+            --secondary-light: #E8C9A0;
+
+            --bg-main: #FAF7F2;
+            --bg-cream: #F5EFE6;
+            --bg-card: #FFFFFF;
+            --bg-soft: #EDE5D8;
+            --bg-code: #F9F6F0;
+
+            --text-dark: #2C1810;
+            --text-body: #4A3728;
+            --text-muted: #6B5744;
+            --text-light: #8B7356;
+
+            --border: #E5DCC8;
+            --border-soft: #EDE5D8;
+
+            --success: #5B8C5A;
+            --success-bg: #E3EDDF;
+            --info: #5B8BA0;
+            --info-bg: #DEE8EC;
+            --warning: #C89B6C;
+            --warning-bg: #F0E4D4;
+            --danger: #B85C5C;
+            --danger-bg: #F0DCDC;
+            --purple: #8B7BA8;
+            --purple-bg: #E5DFED;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-body);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== Header ========== */
+        header {
+            background: linear-gradient(135deg, #FAF7F2 0%, #EDE5D8 100%);
+            border-bottom: 3px solid var(--primary);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(74, 124, 89, 0.08);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.25);
+        }
+
+        .lecture-badge {
+            background: var(--bg-card);
+            border: 2px solid var(--primary);
+            color: var(--primary-dark);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* ========== Hero ========== */
+        .hero {
+            padding: 70px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #D4E5D8 0%, #E8C9A0 50%, #F5EFE6 100%);
+            border: 2px solid var(--primary-light);
+            border-radius: 24px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(74, 124, 89, 0.12);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: var(--primary-dark);
+            color: var(--secondary-light);
+            padding: 8px 22px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 18px;
+            color: var(--text-dark);
+            line-height: 1.3;
+            position: relative;
+        }
+
+        .hero h1 span {
+            color: var(--primary-dark);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-body);
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* ========== Sections ========== */
+        section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--border);
+        }
+
+        .section-title .title-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            color: white;
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.2);
+        }
+
+        /* ========== Cards ========== */
+        .card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(74, 124, 89, 0.04);
+        }
+
+        .card:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 8px 24px rgba(74, 124, 89, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
+            color: var(--text-body);
+            margin-bottom: 12px;
+        }
+
+        .card strong {
+            color: var(--text-dark);
+        }
+
+        /* ========== Objectives ========== */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .objective-item {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-right: 5px solid var(--primary);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .objective-item:hover {
+            border-color: var(--primary-light);
+            border-right-color: var(--secondary);
+            background: var(--bg-cream);
+        }
+
+        .objective-number {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            flex-shrink: 0;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(74, 124, 89, 0.25);
+        }
+
+        .objective-item h4 {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+        }
+
+        .objective-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ========== Review Box ========== */
+        .review-box {
+            background: linear-gradient(135deg, var(--purple-bg) 0%, #F5F3FF 100%);
+            border: 2px solid var(--purple);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 30px 0;
+        }
+
+        .review-box h3 {
+            color: var(--purple);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .review-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .review-list li {
+            background: var(--bg-card);
+            border: 1px solid #D4C9E8;
+            border-radius: 10px;
+            padding: 12px 16px;
+            padding-right: 40px;
+            position: relative;
+            color: var(--text-body);
+        }
+
+        .review-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--purple);
+            font-weight: 900;
+            font-size: 1.1rem;
+        }
+
+        /* ========== Analogy Box ========== */
+        .analogy-box {
+            background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-soft) 100%);
+            border: 2px dashed var(--secondary);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 30px 0;
+        }
+
+        .analogy-box h3 {
+            color: var(--secondary-dark);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .analogy-list {
+            list-style: none;
+        }
+
+        .analogy-list li {
+            padding: 12px 0;
+            padding-right: 40px;
+            position: relative;
+            color: var(--text-body);
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .analogy-list li:last-child {
+            border-bottom: none;
+        }
+
+        .analogy-list li::before {
+            content: '💡';
+            position: absolute;
+            right: 0;
+            top: 12px;
+            font-size: 1.2rem;
+        }
+
+        .analogy-list li strong {
+            color: var(--primary-dark);
+        }
+
+        /* ========== Code Blocks ========== */
+        .code-wrapper {
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            background: var(--bg-code);
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.06);
+        }
+
+        .code-header {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 10px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-lang {
+            background: var(--text-dark);
+            color: var(--secondary-light);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .code-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .code-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .code-dots span:nth-child(1) { background: #E8A5A5; }
+        .code-dots span:nth-child(2) { background: #E8D4A0; }
+        .code-dots span:nth-child(3) { background: #A5D4B0; }
+
+        pre {
+            padding: 20px;
+            overflow-x: auto;
+            margin: 0;
+            background: var(--bg-code);
+        }
+
+        pre code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            line-height: 1.7;
+            display: block;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .tag { color: #A0522D; font-weight: 600; }
+        .attr { color: #2E6B8A; font-weight: 600; }
+        .value { color: #4A7C59; }
+        .comment { color: #8B7356; font-style: italic; }
+        .text { color: var(--text-dark); }
+        .doctype { color: #A0522D; font-weight: 700; }
+        .semantic { color: #8B5A2B; font-weight: 700; }
+
+        /* ========== Info Boxes ========== */
+        .info-box {
+            background: var(--info-bg);
+            border: 2px solid #B8D4DE;
+            border-right-width: 5px;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+
+        .info-box h4 {
+            color: #2E6B8A;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .info-box p {
+            color: #1F4A5E;
+            font-size: 0.95rem;
+        }
+
+        .warning-box {
+            background: var(--warning-bg);
+            border: 2px solid #E5D4B8;
+            border-right-width: 5px;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 {
+            color: var(--secondary-dark);
+            margin-bottom: 8px;
+        }
+
+        .warning-box p {
+            color: var(--text-body);
+            font-size: 0.95rem;
+        }
+
+        .success-box {
+            background: var(--success-bg);
+            border: 2px solid #B8D4B5;
+            border-right-width: 5px;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+
+        .success-box h4 {
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .success-box p {
+            color: #2D5F3F;
+            font-size: 0.95rem;
+        }
+
+        .danger-box {
+            background: var(--danger-bg);
+            border: 2px solid #E0B8B8;
+            border-right-width: 5px;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+
+        .danger-box h4 {
+            color: #8B3A3A;
+            margin-bottom: 8px;
+        }
+
+        .danger-box p {
+            color: #5C2828;
+            font-size: 0.95rem;
+        }
+
+        /* ========== Comparison ========== */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .comparison-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-card.bad {
+            border-color: #E0B8B8;
+        }
+
+        .comparison-card.good {
+            border-color: #B8D4B5;
+        }
+
+        .comparison-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .comparison-card.bad::before {
+            background: var(--danger);
+        }
+
+        .comparison-card.good::before {
+            background: var(--success);
+        }
+
+        .comparison-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comparison-card.bad h4 {
+            color: #8B3A3A;
+        }
+
+        .comparison-card.good h4 {
+            color: var(--primary-dark);
+        }
+
+        .comparison-card pre {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+
+        /* ========== Tag Card Grid ========== */
+        .tag-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 25px 0;
+        }
+
+        .tag-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tag-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .tag-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(74, 124, 89, 0.1);
+        }
+
+        .tag-card .tag-name {
+            font-family: 'Fira Code', monospace;
+            background: var(--bg-code);
+            color: var(--primary-dark);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 10px;
+            border: 1px solid var(--border);
+            direction: ltr;
+        }
+
+        .tag-card h5 {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .tag-card p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        /* ========== Element Table ========== */
+        .element-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .element-table thead {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .element-table th {
+            padding: 14px 18px;
+            text-align: right;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .element-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border-soft);
+            color: var(--text-body);
+        }
+
+        .element-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .element-table tr:hover {
+            background: var(--bg-cream);
+        }
+
+        .element-table code {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: var(--primary-dark);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88rem;
+            font-weight: 600;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        /* ========== Structure Visual ========== */
+        .structure-visual {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .structure-box {
+            border: 2px dashed var(--primary-light);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            position: relative;
+            background: rgba(212, 229, 216, 0.2);
+        }
+
+        .structure-box .box-label {
+            position: absolute;
+            top: -12px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 2px 12px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: 'Fira Code', monospace;
+            direction: ltr;
+        }
+
+        .structure-box.header-box { border-color: #8B5A2B; background: rgba(139, 90, 43, 0.05); }
+        .structure-box.header-box .box-label { background: #8B5A2B; }
+
+        .structure-box.nav-box { border-color: #5B8BA0; background: rgba(91, 139, 160, 0.05); }
+        .structure-box.nav-box .box-label { background: #5B8BA0; }
+
+        .structure-box.main-box { border-color: var(--primary); background: rgba(74, 124, 89, 0.05); }
+        .structure-box.main-box .box-label { background: var(--primary); }
+
+        .structure-box.section-box { border-color: var(--secondary); background: rgba(212, 165, 116, 0.05); }
+        .structure-box.section-box .box-label { background: var(--secondary); }
+
+        .structure-box.article-box { border-color: #8B7BA8; background: rgba(139, 123, 168, 0.05); }
+        .structure-box.article-box .box-label { background: #8B7BA8; }
+
+        .structure-box.aside-box { border-color: #C89B6C; background: rgba(200, 155, 108, 0.05); }
+        .structure-box.aside-box .box-label { background: #C89B6C; }
+
+        .structure-box.footer-box { border-color: #6B5744; background: rgba(107, 87, 68, 0.05); }
+        .structure-box.footer-box .box-label { background: #6B5744; }
+
+        .structure-box p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* ========== Debug Section ========== */
+        .debug-box {
+            background: var(--danger-bg);
+            border: 2px solid var(--danger);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 30px 0;
+        }
+
+        .debug-box h3 {
+            color: #8B3A3A;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .debug-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .debug-wrong, .debug-right {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .debug-wrong {
+            border: 2px solid var(--danger);
+        }
+
+        .debug-right {
+            border: 2px solid var(--success);
+        }
+
+        .debug-label {
+            padding: 8px 15px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .debug-wrong .debug-label {
+            background: var(--danger);
+            color: white;
+        }
+
+        .debug-right .debug-label {
+            background: var(--success);
+            color: white;
+        }
+
+        .debug-wrong pre, .debug-right pre {
+            background: var(--bg-card);
+            padding: 15px;
+            margin: 0;
+        }
+
+        /* ========== Quiz Section ========== */
+        .quiz-section {
+            background: var(--bg-card);
+            border: 3px solid var(--success);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 40px 0;
+            box-shadow: 0 8px 24px rgba(91, 140, 90, 0.1);
+        }
+
+        .quiz-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px dashed var(--success-bg);
+        }
+
+        .quiz-header-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--success) 0%, var(--primary-dark) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 4px 12px rgba(91, 140, 90, 0.25);
+        }
+
+        .quiz-header h2 {
+            color: var(--primary-dark);
+            font-size: 1.6rem;
+        }
+
+        .quiz-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .question {
+            background: var(--bg-cream);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .question:hover {
+            border-color: var(--primary-light);
+            background: var(--bg-soft);
+        }
+
+        .question-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 6px rgba(74, 124, 89, 0.25);
+        }
+
+        .question h4 {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .options {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .options li {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--text-body);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .options li:hover {
+            border-color: var(--primary-light);
+            background: var(--bg-cream);
+            color: var(--text-dark);
+        }
+
+        .option-letter {
+            width: 28px;
+            height: 28px;
+            background: var(--bg-soft);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+            flex-shrink: 0;
+        }
+
+        /* ========== Homework Section ========== */
+        .homework-section {
+            background: var(--bg-card);
+            border: 3px solid var(--info);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 40px 0;
+            box-shadow: 0 8px 24px rgba(91, 139, 160, 0.1);
+        }
+
+        .homework-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px dashed var(--info-bg);
+        }
+
+        .homework-header-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--info) 0%, #3D6B80 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 4px 12px rgba(91, 139, 160, 0.25);
+        }
+
+        .homework-header h2 {
+            color: #2E6B8A;
+            font-size: 1.6rem;
+        }
+
+        .homework-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .homework-item {
+            background: var(--bg-cream);
+            border: 2px solid var(--border);
+            border-right: 5px solid var(--info);
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .homework-item:hover {
+            border-color: var(--info);
+            background: var(--info-bg);
+        }
+
+        .homework-item h4 {
+            color: #2E6B8A;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .homework-item p {
+            color: var(--text-body);
+            margin-bottom: 10px;
+        }
+
+        .homework-item ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .homework-item ul li {
+            padding: 6px 0;
+            padding-right: 25px;
+            position: relative;
+            color: var(--text-body);
+            font-size: 0.95rem;
+        }
+
+        .homework-item ul li::before {
+            content: '◆';
+            position: absolute;
+            right: 0;
+            color: var(--info);
+            font-size: 0.7rem;
+            top: 10px;
+        }
+
+        /* ========== Summary ========== */
+        .summary-box {
+            background: linear-gradient(135deg, var(--primary-soft) 0%, var(--bg-soft) 100%);
+            border: 3px solid var(--primary);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 8px 24px rgba(74, 124, 89, 0.1);
+        }
+
+        .summary-box h3 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-list li {
+            padding: 10px 0;
+            padding-right: 35px;
+            position: relative;
+            color: var(--text-body);
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: 900;
+            font-size: 1.3rem;
+        }
+
+        /* ========== Next Lecture Box ========== */
+        .next-box {
+            background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-soft) 100%);
+            border: 2px dashed var(--secondary);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .next-box h3 {
+            color: var(--secondary-dark);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .next-box p {
+            color: var(--text-body);
+            font-size: 1.05rem;
+        }
+
+        .next-box .next-topic {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        /* ========== Footer ========== */
+        footer {
+            background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-soft) 100%);
+            border-top: 3px solid var(--primary);
+            padding: 40px 0;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        footer .logo {
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        footer .motto {
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+
+        /* ========== Inline Code ========== */
+        code.inline {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            padding: 2px 8px;
+            border-radius: 5px;
+            color: var(--primary-dark);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88rem;
+            font-weight: 600;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        /* ========== Print Styles ========== */
+        @media print {
+            @page {
+                size: A4;
+                margin: 1.5cm;
+            }
+
+            body {
+                background: white;
+                font-size: 11pt;
+                line-height: 1.5;
+            }
+
+            header {
+                position: static;
+                box-shadow: none;
+            }
+
+            .hero, section, .card, .question, .homework-item {
+                page-break-inside: avoid;
+            }
+
+            h1, h2, h3, h4 {
+                page-break-after: avoid;
+            }
+
+            .code-wrapper {
+                page-break-inside: avoid;
+            }
+
+            .comparison-grid, .debug-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 1.5rem; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .objectives-grid { grid-template-columns: 1fr; }
+            .tag-grid { grid-template-columns: 1fr; }
+            .debug-comparison { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== Header ========== -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">S</div>
+                    <span>Sunshine T Academy</span>
+                </div>
+                <div class="lecture-badge">Frontend Level 1 • المحاضرة الثالثة</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- ========== Hero ========== -->
+        <section class="hero">
+            <span class="hero-tag">LECTURE 03</span>
+            <h1><span>Semantic HTML</span></h1>
+            <p>هنشوف إزاي نبني صفحة HTML منظمة ومحترفة باستخدام العناصر الدلالية، ونتكلم عن Accessibility و SEO — الأساس اللي بيفرق بين المبتدئ والمحترف.</p>
+        </section>
+
+        <!-- ========== Review Previous ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🔄</div>
+                <span>مراجعة سريعة</span>
+            </h2>
+
+            <div class="review-box">
+                <h3>📚 من المحاضرة اللي فاتت</h3>
+                <ul class="review-list">
+                    <li>Element = Tag + Content + Closing Tag</li>
+                    <li>Attribute = معلومات إضافية في Opening Tag</li>
+                    <li>Headings من h1 لـ h6</li>
+                    <li>Paragraphs, Lists, Links, Images</li>
+                    <li>تنظيم ملفات المشروع</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h4>🎯 هدف النهاردة</h4>
+                <p>المحاضرة اللي فاتت كنا بنستخدم <code class="inline">&lt;div&gt;</code> و <code class="inline">&lt;span&gt;</code> عشان نقسّم الصفحة. النهاردة هنشوف إن HTML فيه عناصر <strong>دلالية (Semantic)</strong> بتوضح معنى كل جزء في الصفحة — وده بيخلي الكود أنضف، وأفضل لـ SEO، ومتاح للجميع.</p>
+            </div>
+        </section>
+
+        <!-- ========== Learning Objectives ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🎯</div>
+                <span>الأهداف التعليمية</span>
+            </h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">في نهاية المحاضرة، الطالب هيقدر:</p>
+
+            <div class="objectives-grid">
+                <div class="objective-item">
+                    <div class="objective-number">1</div>
+                    <div>
+                        <h4>فهم Semantic HTML</h4>
+                        <p>يعرف معنى Semantic وليه مهم</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">2</div>
+                    <div>
+                        <h4>الفرق بين div و Semantic</h4>
+                        <p>يميز بين العناصر العامة والدلالية</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">3</div>
+                    <div>
+                        <h4>استخدام العناصر الأساسية</h4>
+                        <p>header, nav, main, section, article, aside, footer</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">4</div>
+                    <div>
+                        <h4>بناء هيكل صفحة كامل</h4>
+                        <p>ينظم صفحة كاملة بـ Semantic Elements</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">5</div>
+                    <div>
+                        <h4>فهم Accessibility</h4>
+                        <p>يعرف أساسيات إتاحة الموقع للجميع</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">6</div>
+                    <div>
+                        <h4>فهم SEO</h4>
+                        <p>يعرف كيف Semantic بيحسن ظهور الموقع في البحث</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== What is Semantic? ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🧠</div>
+                <span>ما هو Semantic HTML؟</span>
+            </h2>
+
+            <div class="card">
+                <h3>📖 التعريف</h3>
+                <p><strong>Semantic HTML</strong> يعني إنك تستخدم عناصر HTML اللي ليها <strong>معنى واضح</strong> بيوصف محتواها. بدل ما تستخدم <code class="inline">&lt;div&gt;</code> لكل حاجة، بتستخدم العنصر المناسب للمحتوى.</p>
+                <p>الكلمة <strong>Semantic</strong> معناها "دلالي" — يعني العنصر بيوضح <strong>معنى</strong> المحتوى اللي جواه.</p>
+            </div>
+
+            <div class="analogy-box">
+                <h3>💡 تشبيه من الحياة</h3>
+                <p style="color: var(--text-body); margin-bottom: 15px;">تخيل إنك في <strong>مكتبة</strong>:</p>
+                <ul class="analogy-list">
+                    <li><strong>Non-Semantic:</strong> كل الكتب في صناديق مكتوب عليها "صندوق" — مش هتعرف محتاج إيه!</li>
+                    <li><strong>Semantic:</strong> كل رف مكتوب عليه "روايات"، "علوم"، "تاريخ" — كل حاجة واضحة ومفهومة.</li>
+                </ul>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card bad">
+                    <h4>❌ Non-Semantic</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">مفيش معنى واضح للأجزاء</p>
+                    <pre><code><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"header"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"nav"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"main"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"article"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"footer"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></code></pre>
+                </div>
+                <div class="comparison-card good">
+                    <h4>✅ Semantic</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">كل عنصر بيوضح معناه</p>
+                    <pre><code><span class="semantic">&lt;header&gt;</span>
+  <span class="semantic">&lt;nav&gt;</span>...<span class="semantic">&lt;/nav&gt;</span>
+<span class="semantic">&lt;/header&gt;</span>
+<span class="semantic">&lt;main&gt;</span>
+  <span class="semantic">&lt;article&gt;</span>...<span class="semantic">&lt;/article&gt;</span>
+<span class="semantic">&lt;/main&gt;</span>
+<span class="semantic">&lt;footer&gt;</span>...<span class="semantic">&lt;/footer&gt;</span></code></pre>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <h4>✅ ليه Semantic مهم؟</h4>
+                <p>1. <strong>Accessibility:</strong> قارئات الشاشة تفهم الصفحة بشكل أفضل.</p>
+                <p>2. <strong>SEO:</strong> محركات البحث تفهم محتوى الصفحة.</p>
+                <p>3. <strong>Readability:</strong> الكود بيبقى أسهل في القراءة والصيانة.</p>
+                <p>4. <strong>Professional:</strong> ده اللي بيعمله المطورين المحترفين.</p>
+            </div>
+        </section>
+
+        <!-- ========== Main Semantic Elements ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🏗️</div>
+                <span>العناصر الدلالية الأساسية</span>
+            </h2>
+
+            <div class="tag-grid">
+                <div class="tag-card">
+                    <span class="tag-name">&lt;header&gt;</span>
+                    <h5>رأس الصفحة</h5>
+                    <p>يحتوي على شعار الموقع، العنوان الرئيسي، ومعلومات المقدمة. ممكن يتكرر في كل section.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;nav&gt;</span>
+                    <h5>قائمة التنقل</h5>
+                    <p>يحتوي على روابط التنقل الرئيسية في الموقع (القائمة).</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;main&gt;</span>
+                    <h5>المحتوى الرئيسي</h5>
+                    <p>المحتوى الأساسي والخاص بالصفحة. يتكرر مرة واحدة فقط.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;section&gt;</span>
+                    <h5>قسم موضوعي</h5>
+                    <p>قسم من المحتوى مرتبط بموضوع واحد. عادةً يكون له عنوان.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;article&gt;</span>
+                    <h5>محتوى مستقل</h5>
+                    <p>محتوى يقدر يقف لوحده: مقال، تدوينة، منتج، تعليق.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;aside&gt;</span>
+                    <h5>محتوى جانبي</h5>
+                    <p>محتوى مرتبط بشكل غير مباشر: شريط جانبي، إعلانات، روابط ذات صلة.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;footer&gt;</span>
+                    <h5>تذييل الصفحة</h5>
+                    <p>يحتوي على معلومات الاتصال، حقوق النشر، روابط إضافية. ممكن يتكرر.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;figure&gt;</span>
+                    <h5>وسائط مع وصف</h5>
+                    <p>يحتوي على صورة/فيديو مع وصفها (figcaption).</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🔹 عناصر إضافية مهمة</h3>
+                <table class="element-table">
+                    <thead>
+                        <tr>
+                            <th>العنصر</th>
+                            <th>الوظيفة</th>
+                            <th>مثال استخدام</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>&lt;figcaption&gt;</code></td>
+                            <td>وصف للصورة أو الوسائط</td>
+                            <td>وصف صورة داخل figure</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;details&gt;</code></td>
+                            <td>محتوى قابل للفتح والإغلاق</td>
+                            <td>أسئلة شائعة (FAQ)</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;summary&gt;</code></td>
+                            <td>عنوان لـ details</td>
+                            <td>السؤال في FAQ</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;time&gt;</code></td>
+                            <td>تاريخ أو وقت</td>
+                            <td>تاريخ نشر مقال</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;address&gt;</code></td>
+                            <td>معلومات الاتصال</td>
+                            <td>عنوان، إيميل، تليفون</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;mark&gt;</code></td>
+                            <td>نص مظلل</td>
+                            <td>تمييز كلمة مهمة</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ========== Page Structure ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">📐</div>
+                <span>هيكل صفحة Semantic كامل</span>
+            </h2>
+
+            <div class="card">
+                <h3>📐 الهيكل النموذجي</h3>
+                <p>ده الهيكل اللي بيستخدم في أغلب المواقع الاحترافية:</p>
+            </div>
+
+            <div class="structure-visual">
+                <div class="structure-box header-box">
+                    <span class="box-label">&lt;header&gt;</span>
+                    <div class="structure-box nav-box">
+                        <span class="box-label">&lt;nav&gt;</span>
+                        <p>Home • About • Services • Contact</p>
+                    </div>
+                    <p>Logo + عنوان الموقع</p>
+                </div>
+
+                <div class="structure-box main-box">
+                    <span class="box-label">&lt;main&gt;</span>
+
+                    <div class="structure-box section-box">
+                        <span class="box-label">&lt;section&gt;</span>
+                        <p>Hero Section — مقدمة الصفحة</p>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 15px; margin: 10px 0;">
+                        <div class="structure-box article-box">
+                            <span class="box-label">&lt;article&gt;</span>
+                            <p>المحتوى الرئيسي (مقال/تدوينة)</p>
+                            <div class="structure-box section-box" style="margin-top: 10px;">
+                                <span class="box-label">&lt;section&gt;</span>
+                                <p>قسم داخل المقال</p>
+                            </div>
+                        </div>
+
+                        <div class="structure-box aside-box">
+                            <span class="box-label">&lt;aside&gt;</span>
+                            <p>شريط جانبي</p>
+                            <p style="font-size: 0.8rem;">مقالات ذات صلة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="structure-box footer-box">
+                    <span class="box-label">&lt;footer&gt;</span>
+                    <p>حقوق النشر • روابط • تواصل</p>
+                </div>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML — هيكل كامل</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="value">"ar"</span> <span class="attr">dir</span>=<span class="value">"rtl"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="text">مدونتي</span><span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+
+    <span class="comment">&lt;!-- رأس الصفحة --&gt;</span>
+    <span class="semantic">&lt;header&gt;</span>
+        <span class="tag">&lt;h1&gt;</span><span class="text">مدونتي التقنية</span><span class="tag">&lt;/h1&gt;</span>
+        <span class="semantic">&lt;nav&gt;</span>
+            <span class="tag">&lt;ul&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#"</span><span class="tag">&gt;</span><span class="text">الرئيسية</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#"</span><span class="tag">&gt;</span><span class="text">المقالات</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#"</span><span class="tag">&gt;</span><span class="text">تواصل</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;/ul&gt;</span>
+        <span class="semantic">&lt;/nav&gt;</span>
+    <span class="semantic">&lt;/header&gt;</span>
+
+    <span class="comment">&lt;!-- المحتوى الرئيسي --&gt;</span>
+    <span class="semantic">&lt;main&gt;</span>
+
+        <span class="comment">&lt;!-- قسم المقال --&gt;</span>
+        <span class="semantic">&lt;article&gt;</span>
+            <span class="semantic">&lt;header&gt;</span>
+                <span class="tag">&lt;h2&gt;</span><span class="text">تعلم HTML في 2024</span><span class="tag">&lt;/h2&gt;</span>
+                <span class="tag">&lt;time</span> <span class="attr">datetime</span>=<span class="value">"2024-01-15"</span><span class="tag">&gt;</span><span class="text">15 يناير 2024</span><span class="tag">&lt;/time&gt;</span>
+            <span class="semantic">&lt;/header&gt;</span>
+
+            <span class="semantic">&lt;section&gt;</span>
+                <span class="tag">&lt;h3&gt;</span><span class="text">المقدمة</span><span class="tag">&lt;/h3&gt;</span>
+                <span class="tag">&lt;p&gt;</span><span class="text">محتوى المقدمة...</span><span class="tag">&lt;/p&gt;</span>
+            <span class="semantic">&lt;/section&gt;</span>
+
+            <span class="semantic">&lt;section&gt;</span>
+                <span class="tag">&lt;h3&gt;</span><span class="text">الخطوات</span><span class="tag">&lt;/h3&gt;</span>
+                <span class="tag">&lt;p&gt;</span><span class="text">محتوى الخطوات...</span><span class="tag">&lt;/p&gt;</span>
+            <span class="semantic">&lt;/section&gt;</span>
+
+            <span class="semantic">&lt;footer&gt;</span>
+                <span class="tag">&lt;p&gt;</span><span class="text">كتبه: أحمد محمد</span><span class="tag">&lt;/p&gt;</span>
+            <span class="semantic">&lt;/footer&gt;</span>
+        <span class="semantic">&lt;/article&gt;</span>
+
+        <span class="comment">&lt;!-- الشريط الجانبي --&gt;</span>
+        <span class="semantic">&lt;aside&gt;</span>
+            <span class="tag">&lt;h3&gt;</span><span class="text">مقالات ذات صلة</span><span class="tag">&lt;/h3&gt;</span>
+            <span class="tag">&lt;ul&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#"</span><span class="tag">&gt;</span><span class="text">تعلم CSS</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#"</span><span class="tag">&gt;</span><span class="text">مقدمة JavaScript</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;/ul&gt;</span>
+        <span class="semantic">&lt;/aside&gt;</span>
+
+    <span class="semantic">&lt;/main&gt;</span>
+
+    <span class="comment">&lt;!-- تذييل الصفحة --&gt;</span>
+    <span class="semantic">&lt;footer&gt;</span>
+        <span class="semantic">&lt;address&gt;</span>
+            <span class="tag">&lt;p&gt;</span><span class="text">تواصل: </span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"mailto:info@blog.com"</span><span class="tag">&gt;</span><span class="text">info@blog.com</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/p&gt;</span>
+        <span class="semantic">&lt;/address&gt;</span>
+        <span class="tag">&lt;p&gt;</span><span class="text">© 2024 مدونتي التقنية</span><span class="tag">&lt;/p&gt;</span>
+    <span class="semantic">&lt;/footer&gt;</span>
+
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+            </div>
+        </section>
+
+        <!-- ========== When to use what ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🤔</div>
+                <span>متى نستخدم كل عنصر؟</span>
+            </h2>
+
+            <div class="card">
+                <h3>🔹 Section vs Article — الفرق المهم</h3>
+                <p>كثير من الطلاب بيلخبطوا بين الاتنين. القاعدة بسيطة:</p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card good">
+                    <h4>📂 &lt;section&gt;</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">قسم من محتوى مرتبط بموضوع</p>
+                    <p style="margin-top: 10px;"><strong>مثال:</strong></p>
+                    <p style="font-size: 0.9rem;">• فصل في كتاب</p>
+                    <p style="font-size: 0.9rem;">• تبويب في صفحة</p>
+                    <p style="font-size: 0.9rem;">• قسم "خدماتنا" في موقع</p>
+                </div>
+                <div class="comparison-card good">
+                    <h4>📄 &lt;article&gt;</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">محتوى مستقل يقدر يقف لوحده</p>
+                    <p style="margin-top: 10px;"><strong>مثال:</strong></p>
+                    <p style="font-size: 0.9rem;">• مقال في مدونة</p>
+                    <p style="font-size: 0.9rem;">• منتج في متجر</p>
+                    <p style="font-size: 0.9rem;">• تعليق في منتدى</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>💡 قاعدة ذهبية</h4>
+                <p>اسأل نفسك: <strong>"لو أخذت المحتوى ده لوحده، هيفهمه حد؟"</strong></p>
+                <p>لو الإجابة <strong>أيوة</strong> → استخدم <code class="inline">&lt;article&gt;</code></p>
+                <p>لو الإجابة <strong>لأ، محتاج سياق</strong> → استخدم <code class="inline">&lt;section&gt;</code></p>
+            </div>
+
+            <div class="card">
+                <h3>🔹 قواعد مهمة</h3>
+                <table class="element-table">
+                    <thead>
+                        <tr>
+                            <th>القاعدة</th>
+                            <th>التفاصيل</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>&lt;main&gt;</code></td>
+                            <td>مرة واحدة فقط في الصفحة</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;header&gt;</code> / <code>&lt;footer&gt;</code></td>
+                            <td>ممكن يتكرروا (في article, section)</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;nav&gt;</code></td>
+                            <td>للروابط الرئيسية فقط (مش أي قائمة روابط)</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;aside&gt;</code></td>
+                            <td>محتوى مش أساسي للصفحة</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ خطأ شائع</h4>
+                <p>متستخدمش <code class="inline">&lt;section&gt;</code> أو <code class="inline">&lt;article&gt;</code> مجرد div بتصميم جديد. كل عنصر لازم يكون ليه <strong>معنى حقيقي</strong>. لو مش متأكد، استخدم <code class="inline">&lt;div&gt;</code> — أفضل من استخدام غلط.</p>
+            </div>
+        </section>
+
+        <!-- ========== Accessibility ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">♿</div>
+                <span>أساسيات Accessibility (a11y)</span>
+            </h2>
+
+            <div class="card">
+                <h3>📖 ما هي Accessibility؟</h3>
+                <p><strong>Accessibility</strong> (وتختصر a11y لأن بين a و y في 11 حرف) يعني إنك تخلي موقعك <strong>مستخدم من الجميع</strong> — بما فيهم ذوي الاحتياجات الخاصة.</p>
+                <p>ده مش بس عمل إنساني، ده كمان <strong>قانون</strong> في كتير من الدول، و<strong>معيار مهني</strong> لأي مطور محترف.</p>
+            </div>
+
+            <div class="card">
+                <h3>🔹 كيف Semantic بيحسن Accessibility؟</h3>
+                <p>قارئات الشاشة (Screen Readers) بتستخدم العناصر الدلالية عشان <strong>تفهم</strong> الصفحة وتقرأها بشكل صحيح للمستخدم.</p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card bad">
+                    <h4>❌ بدون Semantic</h4>
+                    <p style="font-size: 0.9rem;">قارئ الشاشة يقرأ:</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">"div, div, div, link, link, div, div..."</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">المستخدم مش هيفهم حاجة!</p>
+                </div>
+                <div class="comparison-card good">
+                    <h4>✅ مع Semantic</h4>
+                    <p style="font-size: 0.9rem;">قارئ الشاشة يقول:</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">"Header, Navigation, Main, Article, Footer"</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">المستخدم يفهم الهيكل ويتنقل بسهولة.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🔹 قواعد أساسية لـ Accessibility</h3>
+                <table class="element-table">
+                    <thead>
+                        <tr>
+                            <th>القاعدة</th>
+                            <th>التفاصيل</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>lang attribute</strong></td>
+                            <td><code>lang="ar"</code> في &lt;html&gt; — يحدد لغة الصفحة</td>
+                        </tr>
+                        <tr>
+                            <td><strong>alt في الصور</strong></td>
+                            <td>وصف كل صورة للقراءات الصوتية</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Labels في Forms</strong></td>
+                            <td>كل input لازم يكون له label</td>
+                        </tr>
+                        <tr>
+                            <td><strong>عناوين مرتبة</strong></td>
+                            <td>h1 → h2 → h3 بدون قفز</td>
+                        </tr>
+                        <tr>
+                            <td><strong>تباين الألوان</strong></td>
+                            <td>النص لازم يكون واضح على الخلفية</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Keyboard Navigation</strong></td>
+                            <td>كل الوظائف لازم تشتغل بالكيبورد</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <h4>💡 معلومة مهمة</h4>
+                <p>حوالي <strong>15% من سكان العالم</strong> عندهم إعاقة ما. لما تعمل موقع accessible، أنت بتفتح موقعك لملايين الناس. ده كمان بيحسن SEO وبيحسن تجربة كل المستخدمين.</p>
+            </div>
+        </section>
+
+        <!-- ========== SEO ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🔍</div>
+                <span>أساسيات SEO</span>
+            </h2>
+
+            <div class="card">
+                <h3>📖 ما هو SEO؟</h3>
+                <p><strong>SEO</strong> = Search Engine Optimization = تحسين محركات البحث.</p>
+                <p>الهدف إن موقعك يظهر في <strong>أول نتائج Google</strong> لما حد يدور على حاجة متعلقة بمحتواك.</p>
+            </div>
+
+            <div class="card">
+                <h3>🔹 كيف Semantic بيحسن SEO؟</h3>
+                <p>محركات البحث (Google, Bing) بتستخدم العناصر الدلالية عشان <strong>تفهم</strong> محتوى موقعك وتصنفه بشكل صحيح.</p>
+            </div>
+
+            <div class="tag-grid">
+                <div class="tag-card">
+                    <span class="tag-name">&lt;h1&gt;</span>
+                    <h5>العنوان الرئيسي</h5>
+                    <p>Google بياخده كأهم عنوان للصفحة. لازم يكون واضح ويوصف المحتوى.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;article&gt;</span>
+                    <h5>محتوى مستقل</h5>
+                    <p>Google بيفهم إن ده محتوى مستقل يقدر يظهره في نتائج البحث.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;nav&gt;</span>
+                    <h5>التنقل</h5>
+                    <p>Google بيفهم إن دي روابط التنقل الرئيسية في الموقع.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;time&gt;</span>
+                    <h5>التواريخ</h5>
+                    <p>Google بيفهم التاريخ بشكل دقيق (مهم للمقالات والأخبار).</p>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <h4>✅ قواعد SEO أساسية</h4>
+                <p>1. استخدم <code class="inline">&lt;h1&gt;</code> مرة واحدة في الصفحة — يوصف الموضوع الرئيسي.</p>
+                <p>2. اتبع ترتيب العناوين: h1 → h2 → h3 بدون قفز.</p>
+                <p>3. استخدم <code class="inline">alt</code> وصفي في كل الصور.</p>
+                <p>4. استخدم <code class="inline">&lt;title&gt;</code> واضح في الـ head.</p>
+                <p>5. استخدم <code class="inline">&lt;meta name="description"&gt;</code> لوصف الصفحة.</p>
+                <p>6. استخدم Semantic Elements بدل divs.</p>
+            </div>
+        </section>
+
+        <!-- ========== figure & details ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🖼️</div>
+                <span>عناصر إضافية مفيدة</span>
+            </h2>
+
+            <div class="card">
+                <h3>🔹 figure + figcaption</h3>
+                <p>لما يكون عندك صورة (أو فيديو) وعايز تضيف عليها وصف، استخدم <code class="inline">&lt;figure&gt;</code> مع <code class="inline">&lt;figcaption&gt;</code>.</p>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="semantic">&lt;figure&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"sunset.jpg"</span> <span class="attr">alt</span>=<span class="value">"غروب الشمس على البحر"</span><span class="tag">&gt;</span>
+    <span class="semantic">&lt;figcaption&gt;</span><span class="text">غروب الشمس في الإسكندرية — يناير 2024</span><span class="semantic">&lt;/figcaption&gt;</span>
+<span class="semantic">&lt;/figure&gt;</span></code></pre>
+            </div>
+
+            <div class="card">
+                <h3>🔹 details + summary</h3>
+                <p>لما يكون عندك محتوى مخفي يقدر المستخدم يفتحه. مثالي لـ <strong>FAQ</strong> (الأسئلة الشائعة).</p>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML — FAQ</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="semantic">&lt;details&gt;</span>
+    <span class="semantic">&lt;summary&gt;</span><span class="text">إيه هو HTML؟</span><span class="semantic">&lt;/summary&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="text">HTML هي لغة توصيف تستخدم لبناء هيكل صفحات الويب.</span><span class="tag">&lt;/p&gt;</span>
+<span class="semantic">&lt;/details&gt;</span>
+
+<span class="semantic">&lt;details&gt;</span>
+    <span class="semantic">&lt;summary&gt;</span><span class="text">إيه الفرق بين HTML و CSS؟</span><span class="semantic">&lt;/summary&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="text">HTML للهيكل، CSS للتصميم.</span><span class="tag">&lt;/p&gt;</span>
+<span class="semantic">&lt;/details&gt;</span></code></pre>
+            </div>
+
+            <div class="card">
+                <h3>🔹 time + address</h3>
+                <p>عناصر متخصصة للتواريخ ومعلومات الاتصال.</p>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="comment">&lt;!-- التاريخ --&gt;</span>
+<span class="tag">&lt;p&gt;</span>
+    <span class="text">نشر في </span>
+    <span class="semantic">&lt;time</span> <span class="attr">datetime</span>=<span class="value">"2024-01-15"</span><span class="semantic">&gt;</span><span class="text">15 يناير 2024</span><span class="semantic">&lt;/time&gt;</span>
+<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- معلومات الاتصال --&gt;</span>
+<span class="semantic">&lt;address&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="text">تواصل معنا:</span><span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="text">الإيميل: </span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"mailto:info@site.com"</span><span class="tag">&gt;</span><span class="text">info@site.com</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="text">التليفون: </span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"tel:+201234567890"</span><span class="tag">&gt;</span><span class="text">01234567890</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/p&gt;</span>
+<span class="semantic">&lt;/address&gt;</span></code></pre>
+            </div>
+        </section>
+
+        <!-- ========== Debugging Activity ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🐛</div>
+                <span>Debugging — اكتشف الأخطاء</span>
+            </h2>
+
+            <div class="debug-box">
+                <h3>🔍 نشاط: حوّل الكود ده لـ Semantic</h3>
+                <p style="color: #5C2828;">الكود ده شغال، بس فيه <strong>5 مشاكل Semantic</strong>. حاول تصلحهم.</p>
+
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span class="code-lang">كود Non-Semantic ❌</span>
+                        <div class="code-dots"><span></span><span></span><span></span></div>
+                    </div>
+<pre><code><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"header"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"nav"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;ul&gt;</span>...<span class="tag">&lt;/ul&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"main-content"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"article"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;h1&gt;</span>مقال<span class="tag">&lt;/h1&gt;</span>
+        <span class="tag">&lt;p&gt;</span>محتوى...<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"sidebar"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"footer"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></code></pre>
+                </div>
+
+                <div class="debug-comparison">
+                    <div class="debug-wrong">
+                        <div class="debug-label">❌ المشاكل</div>
+                        <pre><code style="font-size: 0.85rem;">1. header بـ div
+2. nav بـ div
+3. main بـ div
+4. article بـ div
+5. aside بـ div
+6. footer بـ div</code></pre>
+                    </div>
+                    <div class="debug-right">
+                        <div class="debug-label">✅ الحل</div>
+                        <pre><code style="font-size: 0.85rem;"><span class="semantic">&lt;header&gt;</span>
+  <span class="semantic">&lt;nav&gt;</span>...<span class="semantic">&lt;/nav&gt;</span>
+<span class="semantic">&lt;/header&gt;</span>
+<span class="semantic">&lt;main&gt;</span>
+  <span class="semantic">&lt;article&gt;</span>...<span class="semantic">&lt;/article&gt;</span>
+<span class="semantic">&lt;/main&gt;</span>
+<span class="semantic">&lt;aside&gt;</span>...<span class="semantic">&lt;/aside&gt;</span>
+<span class="semantic">&lt;footer&gt;</span>...<span class="semantic">&lt;/footer&gt;</span></code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== Mini Project ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🎨</div>
+                <span>مشروع المحاضرة: Blog Article</span>
+            </h2>
+
+            <div class="card">
+                <h3>📋 المطلوب</h3>
+                <p>ابني صفحة <strong>"مقال مدونة"</strong> كاملة باستخدام Semantic HTML تحتوي على:</p>
+                <ul style="list-style: none; padding-right: 0; margin-top: 15px;">
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> <code class="inline">&lt;header&gt;</code> فيه اسم الموقع + <code class="inline">&lt;nav&gt;</code> للتنقل</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> <code class="inline">&lt;main&gt;</code> فيه المحتوى الرئيسي</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> <code class="inline">&lt;article&gt;</code> فيه المقال كامل</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> <code class="inline">&lt;header&gt;</code> جوه المقال فيه العنوان + <code class="inline">&lt;time&gt;</code></li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> 2 <code class="inline">&lt;section&gt;</code> جوه المقال (مقدمة + محتوى)</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> <code class="inline">&lt;figure&gt;</code> + <code class="inline">&lt;figcaption&gt;</code> لصورة</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> <code class="inline">&lt;aside&gt;</code> فيه مقالات ذات صلة</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> <code class="inline">&lt;details&gt;</code> + <code class="inline">&lt;summary&gt;</code> لأسئلة شائعة</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> <code class="inline">&lt;footer&gt;</code> فيه <code class="inline">&lt;address&gt;</code> وحقوق النشر</li>
+                </ul>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">مثال للحل</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="value">"ar"</span> <span class="attr">dir</span>=<span class="value">"rtl"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="text">تعلم البرمجة | مدونة Sunshine</span><span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+
+    <span class="comment">&lt;!-- رأس الموقع --&gt;</span>
+    <span class="semantic">&lt;header&gt;</span>
+        <span class="tag">&lt;h1&gt;</span><span class="text">مدونة Sunshine</span><span class="tag">&lt;/h1&gt;</span>
+        <span class="semantic">&lt;nav&gt;</span>
+            <span class="tag">&lt;ul&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#"</span><span class="tag">&gt;</span><span class="text">الرئيسية</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#"</span><span class="tag">&gt;</span><span class="text">المقالات</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#"</span><span class="tag">&gt;</span><span class="text">تواصل</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;/ul&gt;</span>
+        <span class="semantic">&lt;/nav&gt;</span>
+    <span class="semantic">&lt;/header&gt;</span>
+
+    <span class="comment">&lt;!-- المحتوى الرئيسي --&gt;</span>
+    <span class="semantic">&lt;main&gt;</span>
+
+        <span class="comment">&lt;!-- المقال --&gt;</span>
+        <span class="semantic">&lt;article&gt;</span>
+            <span class="semantic">&lt;header&gt;</span>
+                <span class="tag">&lt;h2&gt;</span><span class="text">كيف تبدأ تعلم البرمجة في 2024</span><span class="tag">&lt;/h2&gt;</span>
+                <span class="semantic">&lt;time</span> <span class="attr">datetime</span>=<span class="value">"2024-01-20"</span><span class="semantic">&gt;</span><span class="text">20 يناير 2024</span><span class="semantic">&lt;/time&gt;</span>
+            <span class="semantic">&lt;/header&gt;</span>
+
+            <span class="semantic">&lt;section&gt;</span>
+                <span class="tag">&lt;h3&gt;</span><span class="text">المقدمة</span><span class="tag">&lt;/h3&gt;</span>
+                <span class="tag">&lt;p&gt;</span><span class="text">البرمجة مهارة المستقبل...</span><span class="tag">&lt;/p&gt;</span>
+            <span class="semantic">&lt;/section&gt;</span>
+
+            <span class="semantic">&lt;section&gt;</span>
+                <span class="tag">&lt;h3&gt;</span><span class="text">الخطوات</span><span class="tag">&lt;/h3&gt;</span>
+                <span class="tag">&lt;p&gt;</span><span class="text">ابدأ بـ HTML و CSS...</span><span class="tag">&lt;/p&gt;</span>
+
+                <span class="semantic">&lt;figure&gt;</span>
+                    <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"images/code.jpg"</span> <span class="attr">alt</span>=<span class="value">"شاشة كود"</span><span class="tag">&gt;</span>
+                    <span class="semantic">&lt;figcaption&gt;</span><span class="text">مثال على كود HTML</span><span class="semantic">&lt;/figcaption&gt;</span>
+                <span class="semantic">&lt;/figure&gt;</span>
+            <span class="semantic">&lt;/section&gt;</span>
+
+            <span class="semantic">&lt;footer&gt;</span>
+                <span class="tag">&lt;p&gt;</span><span class="text">كتبه: أحمد محمد</span><span class="tag">&lt;/p&gt;</span>
+            <span class="semantic">&lt;/footer&gt;</span>
+        <span class="semantic">&lt;/article&gt;</span>
+
+        <span class="comment">&lt;!-- أسئلة شائعة --&gt;</span>
+        <span class="semantic">&lt;section&gt;</span>
+            <span class="tag">&lt;h3&gt;</span><span class="text">أسئلة شائعة</span><span class="tag">&lt;/h3&gt;</span>
+            <span class="semantic">&lt;details&gt;</span>
+                <span class="semantic">&lt;summary&gt;</span><span class="text">هل البرمجة صعبة؟</span><span class="semantic">&lt;/summary&gt;</span>
+                <span class="tag">&lt;p&gt;</span><span class="text">لا، بالتمرين هتلاقيها سهلة.</span><span class="tag">&lt;/p&gt;</span>
+            <span class="semantic">&lt;/details&gt;</span>
+        <span class="semantic">&lt;/section&gt;</span>
+
+        <span class="comment">&lt;!-- الشريط الجانبي --&gt;</span>
+        <span class="semantic">&lt;aside&gt;</span>
+            <span class="tag">&lt;h3&gt;</span><span class="text">مقالات ذات صلة</span><span class="tag">&lt;/h3&gt;</span>
+            <span class="tag">&lt;ul&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#"</span><span class="tag">&gt;</span><span class="text">تعلم HTML</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#"</span><span class="tag">&gt;</span><span class="text">تعلم CSS</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;/ul&gt;</span>
+        <span class="semantic">&lt;/aside&gt;</span>
+
+    <span class="semantic">&lt;/main&gt;</span>
+
+    <span class="comment">&lt;!-- تذييل الموقع --&gt;</span>
+    <span class="semantic">&lt;footer&gt;</span>
+        <span class="semantic">&lt;address&gt;</span>
+            <span class="tag">&lt;p&gt;</span><span class="text">تواصل: </span>
+                <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"mailto:info@sunshine.com"</span><span class="tag">&gt;</span><span class="text">info@sunshine.com</span><span class="tag">&lt;/a&gt;</span>
+            <span class="tag">&lt;/p&gt;</span>
+        <span class="semantic">&lt;/address&gt;</span>
+        <span class="tag">&lt;p&gt;</span><span class="text">© 2024 مدونة Sunshine</span><span class="tag">&lt;/p&gt;</span>
+    <span class="semantic">&lt;/footer&gt;</span>
+
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+            </div>
+        </section>
+
+        <!-- ========== Summary ========== -->
+        <section>
+            <div class="summary-box">
+                <h3>📌 ملخص المحاضرة</h3>
+                <ul class="summary-list">
+                    <li>Semantic HTML = استخدام عناصر ليها معنى واضح</li>
+                    <li>العناصر الأساسية: header, nav, main, section, article, aside, footer</li>
+                    <li>article = محتوى مستقل، section = جزء من محتوى</li>
+                    <li>main مرة واحدة فقط في الصفحة</li>
+                    <li>header و footer ممكن يتكرر في article/section</li>
+                    <li>Accessibility = إتاحة الموقع للجميع (a11y)</li>
+                    <li>SEO = تحسين ظهور الموقع في محركات البحث</li>
+                    <li>Semantic بيحسن Accessibility و SEO مع بعض</li>
+                    <li>figure + figcaption للصور مع وصف</li>
+                    <li>details + summary للمحتوى القابل للفتح</li>
+                    <li>time للتواريخ، address لمعلومات الاتصال</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ========== Next Lecture ========== -->
+        <section>
+            <div class="next-box">
+                <h3>🚀 المحاضرة الجاية</h3>
+                <p>هننتقل لعناصر HTML مهمة جداً: <strong>Tables & Forms</strong></p>
+                <p>هنشوف إزاي نبني جداول بيانات ونماذج تفاعلية (Forms) بأنواع inputs مختلفة — وهي الأساس لأي موقع حقيقي.</p>
+                <span class="next-topic">المحاضرة القادمة: Tables & Forms</span>
+            </div>
+        </section>
+
+        <!-- ========== Quiz Section ========== -->
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <div class="quiz-header-icon">❓</div>
+                <div>
+                    <h2>أسئلة اختيار من متعدد</h2>
+                    <p>10 أسئلة لاختبار فهمك لمحتوى المحاضرة</p>
+                </div>
+            </div>
+
+            <!-- Q1 -->
+            <div class="question">
+                <span class="question-number">سؤال 1</span>
+                <h4>ما معنى Semantic HTML؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> استخدام CSS في HTML</li>
+                    <li><span class="option-letter">ب</span> استخدام عناصر ليها معنى واضح يوصف محتواها</li>
+                    <li><span class="option-letter">ج</span> استخدام div لكل شيء</li>
+                    <li><span class="option-letter">د</span> كتابة HTML بدون أخطاء</li>
+                </ul>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question">
+                <span class="question-number">سؤال 2</span>
+                <h4>أي عنصر بيستخدم للمحتوى الرئيسي في الصفحة (مرة واحدة فقط)؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> &lt;header&gt;</li>
+                    <li><span class="option-letter">ب</span> &lt;section&gt;</li>
+                    <li><span class="option-letter">ج</span> &lt;main&gt;</li>
+                    <li><span class="option-letter">د</span> &lt;article&gt;</li>
+                </ul>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question">
+                <span class="question-number">سؤال 3</span>
+                <h4>ما الفرق بين &lt;section&gt; و &lt;article&gt;؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> مفيش فرق، الاتنين نفس الحاجة</li>
+                    <li><span class="option-letter">ب</span> article = محتوى مستقل، section = جزء من محتوى</li>
+                    <li><span class="option-letter">ج</span> section = محتوى مستقل، article = جزء من محتوى</li>
+                    <li><span class="option-letter">د</span> article للصور فقط، section للنصوص</li>
+                </ul>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question">
+                <span class="question-number">سؤال 4</span>
+                <h4>أي عنصر بيستخدم لقائمة التنقل الرئيسية؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> &lt;menu&gt;</li>
+                    <li><span class="option-letter">ب</span> &lt;navigation&gt;</li>
+                    <li><span class="option-letter">ج</span> &lt;nav&gt;</li>
+                    <li><span class="option-letter">د</span> &lt;links&gt;</li>
+                </ul>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question">
+                <span class="question-number">سؤال 5</span>
+                <h4>ما معنى Accessibility (a11y)؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> سرعة الموقع</li>
+                    <li><span class="option-letter">ب</span> إتاحة الموقع للجميع بما فيهم ذوي الاحتياجات الخاصة</li>
+                    <li><span class="option-letter">ج</span> أمان الموقع</li>
+                    <li><span class="option-letter">د</span> تصميم الموقع بالموبايل</li>
+                </ul>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question">
+                <span class="question-number">سؤال 6</span>
+                <h4>أي عنصر بيستخدم للمحتوى الجانبي (شريط جانبي)؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> &lt;sidebar&gt;</li>
+                    <li><span class="option-letter">ب</span> &lt;side&gt;</li>
+                    <li><span class="option-letter">ج</span> &lt;aside&gt;</li>
+                    <li><span class="option-letter">د</span> &lt;section&gt;</li>
+                </ul>
+            </div>
+
+            <!-- Q7 -->
+            <div class="question">
+                <span class="question-number">سؤال 7</span>
+                <h4>كيف Semantic HTML بيحسن SEO؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> بيخلي الموقع أسرع</li>
+                    <li><span class="option-letter">ب</span> بيساعد محركات البحث تفهم محتوى الصفحة</li>
+                    <li><span class="option-letter">ج</span> بيضيف كلمات مفتاحية تلقائياً</li>
+                    <li><span class="option-letter">د</span> بيغير ألوان الموقع</li>
+                </ul>
+            </div>
+
+            <!-- Q8 -->
+            <div class="question">
+                <span class="question-number">سؤال 8</span>
+                <h4>أي عنصر بيستخدم لوصف صورة داخل figure؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> &lt;caption&gt;</li>
+                    <li><span class="option-letter">ب</span> &lt;description&gt;</li>
+                    <li><span class="option-letter">ج</span> &lt;figcaption&gt;</li>
+                    <li><span class="option-letter">د</span> &lt;alt&gt;</li>
+                </ul>
+            </div>
+
+            <!-- Q9 -->
+            <div class="question">
+                <span class="question-number">سؤال 9</span>
+                <h4>أي عنصر بيستخدم لإنشاء محتوى قابل للفتح والإغلاق (FAQ)؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> &lt;toggle&gt;</li>
+                    <li><span class="option-letter">ب</span> &lt;details&gt; + &lt;summary&gt;</li>
+                    <li><span class="option-letter">ج</span> &lt;collapse&gt;</li>
+                    <li><span class="option-letter">د</span> &lt;accordion&gt;</li>
+                </ul>
+            </div>
+
+            <!-- Q10 -->
+            <div class="question">
+                <span class="question-number">سؤال 10</span>
+                <h4>أي عنصر بيستخدم لمعلومات الاتصال؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> &lt;contact&gt;</li>
+                    <li><span class="option-letter">ب</span> &lt;info&gt;</li>
+                    <li><span class="option-letter">ج</span> &lt;address&gt;</li>
+                    <li><span class="option-letter">د</span> &lt;footer&gt; فقط</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ========== Homework Section ========== -->
+        <section class="homework-section">
+            <div class="homework-header">
+                <div class="homework-header-icon">📝</div>
+                <div>
+                    <h2>واجبات المحاضرة</h2>
+                    <p>5 مسائل تطبيقية متدرجة لتثبيت ما تعلمته</p>
+                </div>
+            </div>
+
+            <!-- HW1 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الأول: صفحة بسيطة بـ Semantic</h4>
+                <p>ابني صفحة فيها:</p>
+                <ul>
+                    <li>&lt;header&gt; فيه عنوان الموقع + &lt;nav&gt; بـ 3 روابط</li>
+                    <li>&lt;main&gt; فيه &lt;section&gt; واحدة فيها عنوان وفقرة</li>
+                    <li>&lt;footer&gt; فيه حقوق النشر</li>
+                    <li>استخدم lang="ar" في &lt;html&gt;</li>
+                </ul>
+            </div>
+
+            <!-- HW2 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الثاني: صفحة منتج</h4>
+                <p>ابني صفحة منتج في متجر إلكتروني:</p>
+                <ul>
+                    <li>&lt;header&gt; + &lt;nav&gt; للموقع</li>
+                    <li>&lt;main&gt; فيه &lt;article&gt; للمنتج</li>
+                    <li>داخل article: &lt;header&gt; فيه اسم المنتج + السعر</li>
+                    <li>&lt;figure&gt; + &lt;figcaption&gt; لصورة المنتج</li>
+                    <li>&lt;section&gt; فيه وصف المنتج</li>
+                    <li>&lt;aside&gt; فيه منتجات مشابهة</li>
+                    <li>&lt;footer&gt; للموقع</li>
+                </ul>
+            </div>
+
+            <!-- HW3 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الثالث: صفحة وصفة طبخ</h4>
+                <p>ابني صفحة وصفة طبخ كاملة:</p>
+                <ul>
+                    <li>&lt;article&gt; فيه الوصفة</li>
+                    <li>&lt;header&gt; فيه اسم الطبق + &lt;time&gt; لوقت التحضير</li>
+                    <li>&lt;section&gt; للمكونات (قائمة &lt;ul&gt;)</li>
+                    <li>&lt;section&gt; للخطوات (قائمة &lt;ol&gt;)</li>
+                    <li>&lt;figure&gt; + &lt;figcaption&gt; لصورة الطبق</li>
+                    <li>&lt;aside&gt; فيه وصفات مشابهة</li>
+                    <li>&lt;details&gt; + &lt;summary&gt; لنصائح إضافية</li>
+                </ul>
+            </div>
+
+            <!-- HW4 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الرابع: صفحة ملف شخصي (Profile)</h4>
+                <p>ابني صفحة Profile كاملة:</p>
+                <ul>
+                    <li>&lt;header&gt; فيه اسمك + &lt;nav&gt; للتنقل</li>
+                    <li>&lt;main&gt; فيه:
+                        <ul>
+                            <li>&lt;section&gt; "عني" — فقرة تعريفية</li>
+                            <li>&lt;section&gt; "مهاراتي" — قائمة</li>
+                            <li>&lt;section&gt; "مشاريعي" — &lt;article&gt; لكل مشروع</li>
+                        </ul>
+                    </li>
+                    <li>&lt;aside&gt; فيه معلومات التواصل</li>
+                    <li>&lt;footer&gt; فيه &lt;address&gt; + حقوق النشر</li>
+                </ul>
+            </div>
+
+            <!-- HW5 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الخامس: التحدي — صفحة مجلة كاملة</h4>
+                <p>ابني صفحة مجلة إلكترونية كاملة تجمع كل اللي اتعلمته:</p>
+                <ul>
+                    <li>&lt;header&gt; فيه شعار المجلة + &lt;nav&gt; بـ 5 روابط</li>
+                    <li>&lt;main&gt; فيه:
+                        <ul>
+                            <li>&lt;section&gt; "المقال الرئيسي" — &lt;article&gt; كامل فيه:
+                                <ul>
+                                    <li>&lt;header&gt; فيه العنوان + &lt;time&gt;</li>
+                                    <li>&lt;figure&gt; + &lt;figcaption&gt;</li>
+                                    <li>2 &lt;section&gt; (مقدمة + محتوى)</li>
+                                    <li>&lt;footer&gt; فيه اسم الكاتب</li>
+                                </ul>
+                            </li>
+                            <li>&lt;section&gt; "مقالات أخرى" — 3 &lt;article&gt; صغيرة</li>
+                        </ul>
+                    </li>
+                    <li>&lt;aside&gt; فيه:
+                        <ul>
+                            <li>قائمة "الأكثر قراءة"</li>
+                            <li>&lt;details&gt; + &lt;summary&gt; لأسئلة شائعة</li>
+                        </ul>
+                    </li>
+                    <li>&lt;footer&gt; فيه &lt;address&gt; + حقوق النشر + روابط</li>
+                    <li>استخدم تعليقات &lt;!-- --&gt; لتنظيم الكود</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ========== Footer ========== -->
+    <footer>
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">S</div>
+                <span>Sunshine T Academy</span>
+            </div>
+            <p>Frontend Level 1 — HTML + CSS</p>
+            <p>بنحوّل الحلم لكود ☀️</p>
+            <p class="motto">Semantic HTML • Accessibility • SEO</p>
+        </div>
+    </footer>
+
+</body>
+</html>
